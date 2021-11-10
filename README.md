@@ -38,3 +38,7 @@ HUD:
 Goal:
 
 - A not so scary game where exploration and curiosity is the main focus
+
+
+
+https://www.youtube.com/watch?v=0Ccb9pqAfyk

@@ -81,6 +81,10 @@
       "name": "/actions/mixedreality/in/ExternalCamera",
       "type": "pose",
       "requirement": "optional"
+    },
+    {
+      "name": "/actions/TestSet/in/ActionClick",
+      "type": "boolean"
     }
   ],
   "action_sets": [
@@ -98,6 +102,14 @@
     },
     {
       "name": "/actions/mixedreality",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/TestSet",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/NewSet",
       "usage": "single"
     }
   ],
