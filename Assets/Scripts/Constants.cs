@@ -14,5 +14,7 @@ namespace Assets.Scripts
             "Labyrinth_B" 
         };
 
+        public static string animationStart = "Start";
+
     }
 }
