@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Labyrinth_B.unity
     guid: 281f5bca0d3c4da46bf7895b7eb0fb6e
+  - enabled: 1
+    path: Assets/Scenes/Labyrinth_A.unity
+    guid: 6bda0cc7fc3622340a0f63dc7aaa141b
   m_configObjects: {}
