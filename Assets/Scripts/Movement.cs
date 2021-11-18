@@ -7,7 +7,8 @@
 /// </summary>
 public class Movement : MonoBehaviour
 {
-    public float moveSpeed = 5;
+    public float moveSpeed = 0.5f;
+    public float rotationRate = 5f;
 
     void Start()
     {
@@ -18,11 +19,11 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.D))
         {
-            transform.RotateAround(transform.position, new Vector3(0, 1, 0), moveSpeed);
+            transform.RotateAround(transform.position, new Vector3(0, 1, 0), rotationRate);
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            transform.RotateAround(transform.position, new Vector3(0, 1, 0), -moveSpeed);
+            transform.RotateAround(transform.position, new Vector3(0, 1, 0), -rotationRate);
         }
         else if (Input.GetKey(KeyCode.W))
         {
