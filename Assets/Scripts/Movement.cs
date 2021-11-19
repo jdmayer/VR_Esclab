@@ -35,3 +35,6 @@ public class Movement : MonoBehaviour
         }
     }
 }
+
+
+// https://answers.unity.com/questions/1743970/make-player-not-go-through-walls.html

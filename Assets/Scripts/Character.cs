@@ -6,7 +6,8 @@ using UnityEngine;
 /// </summary>
 public class Character : MonoBehaviour
 {
-    public Animator fieldOfView;
+    public Animator FieldOfView;
+    public StatusBar HealthBar;
 
     private int currHealth;
     private int maxHealth;
@@ -20,6 +21,7 @@ public class Character : MonoBehaviour
         this.currHealth = newCurrHealth < 0 
             ? 0 : newCurrHealth > maxHealth 
             ? maxHealth : newCurrHealth;
+        HealthBar?.UpdateStatBar(currHealth / maxHealth);
     }
 
     public void ChangeCurrHealth(int healthDifference)
@@ -68,14 +70,14 @@ public class Character : MonoBehaviour
     private void CheckHealthCondition(int oldHealth, int newHealth)
     {
         Debug.Log(oldHealth + " => " + newHealth);
-        if (fieldOfView && oldHealth >= painLevel && newHealth <= painLevel)
+        if (FieldOfView && oldHealth >= painLevel && newHealth <= painLevel)
         {
-            fieldOfView.SetBool(Constants.animationHurt, true);
+            FieldOfView.SetBool(Constants.animationHurt, true);
             Debug.Log("Character is in critical condition! " + currHealth + " / " + maxHealth);
         }
-        else if (fieldOfView && oldHealth <= painLevel && newHealth >= painLevel)
+        else if (FieldOfView && oldHealth <= painLevel && newHealth >= painLevel)
         {
-            fieldOfView.SetBool(Constants.animationHurt, false);
+            FieldOfView.SetBool(Constants.animationHurt, false);
             Debug.Log("Character is healed! " + currHealth + " / " + maxHealth);
         }
     }
