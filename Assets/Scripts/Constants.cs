@@ -15,6 +15,7 @@ namespace Assets.Scripts
         };
 
         public static string animationStart = "Start";
+        public static string animationHurt = "IsHurt";
 
     }
 }

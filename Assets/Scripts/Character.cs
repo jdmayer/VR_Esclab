@@ -1,12 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Assets.Scripts;
 using UnityEngine;
 
 /// <summary>
 /// Author: Janine Mayer
 /// </summary>
-public class Character 
+public class Character : MonoBehaviour
 {
+    public Animator fieldOfView;
 
     private int currHealth;
     private int maxHealth;
@@ -17,7 +17,9 @@ public class Character
     public void SetCurrHealth(int newCurrHealth)
     {
         CheckHealthCondition(currHealth, newCurrHealth);
-        this.currHealth = newCurrHealth;
+        this.currHealth = newCurrHealth < 0 
+            ? 0 : newCurrHealth > maxHealth 
+            ? maxHealth : newCurrHealth;
     }
 
     public void ChangeCurrHealth(int healthDifference)
@@ -56,6 +58,7 @@ public class Character
     {
         this.SetMaxHealth(maxHealth);
         this.SetCurrHealth(maxHealth);
+        this.SetPainLevel(maxHealth / 2);
     }
 
     public Character() : this(100)
@@ -64,16 +67,29 @@ public class Character
 
     private void CheckHealthCondition(int oldHealth, int newHealth)
     {
-        if (oldHealth > painLevel && newHealth < painLevel)
+        Debug.Log(oldHealth + " => " + newHealth);
+        if (fieldOfView && oldHealth >= painLevel && newHealth <= painLevel)
         {
-            // blurr vision
-            // adjust audio
+            fieldOfView.SetBool(Constants.animationHurt, true);
             Debug.Log("Character is in critical condition! " + currHealth + " / " + maxHealth);
         }
-        else if (oldHealth < painLevel && newHealth > painLevel)
+        else if (fieldOfView && oldHealth <= painLevel && newHealth >= painLevel)
         {
-            // stop all distraction
+            fieldOfView.SetBool(Constants.animationHurt, false);
             Debug.Log("Character is healed! " + currHealth + " / " + maxHealth);
+        }
+    }
+
+    //for testing
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.J))
+        {
+            ChangeCurrHealth(-5);
+        }
+        else if (Input.GetKey(KeyCode.K))
+        {
+            ChangeCurrHealth(5);
         }
     }
 }
