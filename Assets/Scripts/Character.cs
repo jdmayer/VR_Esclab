@@ -21,7 +21,7 @@ public class Character : MonoBehaviour
         this.currHealth = newCurrHealth < 0 
             ? 0 : newCurrHealth > maxHealth 
             ? maxHealth : newCurrHealth;
-        HealthBar?.UpdateStatBar(currHealth / maxHealth);
+        HealthBar?.UpdateStatBar((float)currHealth / (float)maxHealth);
     }
 
     public void ChangeCurrHealth(int healthDifference)
@@ -80,6 +80,25 @@ public class Character : MonoBehaviour
             FieldOfView.SetBool(Constants.animationHurt, false);
             Debug.Log("Character is healed! " + currHealth + " / " + maxHealth);
         }
+    }
+
+    public void SetCharacterStats()
+    {
+        PlayerPrefs.SetInt(CharacterStats.MaxHealth, maxHealth);
+        PlayerPrefs.SetInt(CharacterStats.CurrHealth, currHealth);
+        PlayerPrefs.SetInt(CharacterStats.PainLevel, painLevel);
+    }
+
+    public void UpdateValuesWithCharacterStats()
+    {
+        SetMaxHealth(PlayerPrefs.GetInt(CharacterStats.MaxHealth));
+        SetCurrHealth(PlayerPrefs.GetInt(CharacterStats.CurrHealth));
+        SetPainLevel(PlayerPrefs.GetInt(CharacterStats.PainLevel));
+    }
+
+    public void Start()
+    {
+        UpdateValuesWithCharacterStats();
     }
 
     //for testing

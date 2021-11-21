@@ -14,6 +14,8 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class Portal : MonoBehaviour
 {
+    public Character character;
+
     public Animator transition;
     public float transitionTime = 1;
 
@@ -27,6 +29,8 @@ public class Portal : MonoBehaviour
 
     private void ChangeScene()
     {
+        character?.SetCharacterStats();
+
         var currentScene = SceneManager.GetActiveScene().name;
         var currentSceneIndex = Array.IndexOf(Constants.labyrinthScenes, currentScene);
 
