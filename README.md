@@ -45,4 +45,6 @@ https://www.youtube.com/watch?v=0Ccb9pqAfyk
 
 Freesound:
 Heartbeat: https://freesound.org/people/newlocknew/sounds/608243/
-Fast breathing: https://freesound.org/people/Nox_Sound/sounds/554907/
+
+Healthbar image
+https://www.youtube.com/watch?v=FQNZwcd6FaY
