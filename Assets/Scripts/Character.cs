@@ -71,17 +71,27 @@ public class Character : MonoBehaviour
     private void CheckHealthCondition(int oldHealth, int newHealth)
     {
         Debug.Log(oldHealth + " => " + newHealth);
-        if (FieldOfView && oldHealth >= painLevel && newHealth <= painLevel)
+                
+        if (newHealth <= painLevel)
         {
-            Debug.Log("Character is in critical condition! " + currHealth + " / " + maxHealth);
+            if (FieldOfView && oldHealth >= painLevel)
+            {
+                Debug.Log("Character is in critical condition! " + currHealth + " / " + maxHealth);
 
-            FieldOfView.SetBool(Constants.animationHurt, true);
-            heartSound.Play();
+                FieldOfView.SetBool(Constants.animationHurt, true);
+                heartSound.Play();
+                heartSound.volume = 0.5f;
+            }
+
+            if (oldHealth != newHealth)
+            {
+                heartSound.volume += oldHealth > newHealth ? 0.2f : -0.1f;
+            }
         }
         else if (FieldOfView && oldHealth <= painLevel && newHealth >= painLevel)
         {
             Debug.Log("Character is healed! " + currHealth + " / " + maxHealth);
-            
+
             FieldOfView.SetBool(Constants.animationHurt, false);
             heartSound.Stop();
         }
