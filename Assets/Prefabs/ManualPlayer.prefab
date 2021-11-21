@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 5487040419818286823}
   - component: {fileID: 8204237433271240060}
   - component: {fileID: 5487040419818286817}
+  - component: {fileID: 3594962301651859767}
   - component: {fileID: 5487040419818286816}
   - component: {fileID: 5487040419818286822}
   m_Layer: 0
@@ -178,7 +179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189e87a1b4b318a448aba842fca442a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldOfView: {fileID: 0}
+  FieldOfView: {fileID: 0}
+  HealthBar: {fileID: 0}
+  heartSound: {fileID: 0}
 --- !u!114 &5487040419818286817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +196,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0.5
   rotationRate: 5
-  character: {fileID: 0}
+--- !u!114 &3594962301651859767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5487040419818286818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6c5823fc1dec6439e64ab6851e7e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDistance: 1.2
 --- !u!65 &5487040419818286816
 BoxCollider:
   m_ObjectHideFlags: 0
