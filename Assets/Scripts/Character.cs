@@ -8,6 +8,7 @@ public class Character : MonoBehaviour
 {
     public Animator FieldOfView;
     public StatusBar HealthBar;
+    public AudioSource heartSound;
 
     private int currHealth;
     private int maxHealth;
@@ -72,13 +73,17 @@ public class Character : MonoBehaviour
         Debug.Log(oldHealth + " => " + newHealth);
         if (FieldOfView && oldHealth >= painLevel && newHealth <= painLevel)
         {
-            FieldOfView.SetBool(Constants.animationHurt, true);
             Debug.Log("Character is in critical condition! " + currHealth + " / " + maxHealth);
+
+            FieldOfView.SetBool(Constants.animationHurt, true);
+            heartSound.Play();
         }
         else if (FieldOfView && oldHealth <= painLevel && newHealth >= painLevel)
         {
-            FieldOfView.SetBool(Constants.animationHurt, false);
             Debug.Log("Character is healed! " + currHealth + " / " + maxHealth);
+            
+            FieldOfView.SetBool(Constants.animationHurt, false);
+            heartSound.Stop();
         }
     }
 
