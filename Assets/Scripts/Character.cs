@@ -78,7 +78,7 @@ public class Character : MonoBehaviour
             {
                 Debug.Log("Character is in critical condition! " + currHealth + " / " + maxHealth);
 
-                FieldOfView.SetBool(Constants.animationHurt, true);
+                FieldOfView.SetBool(StringConstants.ANIMATION_ISHURT, true);
                 heartSound.Play();
                 heartSound.volume = 0.5f;
             }
@@ -92,7 +92,7 @@ public class Character : MonoBehaviour
         {
             Debug.Log("Character is healed! " + currHealth + " / " + maxHealth);
 
-            FieldOfView.SetBool(Constants.animationHurt, false);
+            FieldOfView.SetBool(StringConstants.ANIMATION_ISHURT, false);
             heartSound.Stop();
         }
     }

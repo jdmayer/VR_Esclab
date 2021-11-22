@@ -25,15 +25,15 @@ public class WallMover : MonoBehaviour
     void Start()
     {
         breakable =
-            Resources.Load(Constants.materialBreakable, typeof(Material)) as Material;
+            Resources.Load(StringConstants.MATERIAL_BREAKABLE, typeof(Material)) as Material;
         breakableHighlighted = 
-            Resources.Load(Constants.materialBreakableHighlighted, typeof(Material)) as Material;
+            Resources.Load(StringConstants.MATERIAL_BREAKABLE_HIGHLIGHTED, typeof(Material)) as Material;
         breakableSelected =
-            Resources.Load(Constants.materialBreakableSelected, typeof(Material)) as Material;
+            Resources.Load(StringConstants.MATERIAL_BREAKABLE_SELECTED, typeof(Material)) as Material;
 
         foreach (GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[])
         { 
-            if (go.name.Contains(Constants.breakableWall) && go.activeInHierarchy) {
+            if (go.name.Contains(StringConstants.BREAKABLE_WALL) && go.activeInHierarchy) {
                 breakableWalls.Add(go);
             }
         }
@@ -73,7 +73,7 @@ public class WallMover : MonoBehaviour
             currentWall.GetComponent<Renderer>().material = breakable;
             currentWall = null;
             isSelected = false; 
-            StopCoroutine(Constants.moveWall);
+            StopCoroutine(StringConstants.MOVE_WALL);
         }
 
         GameObject closestVisibleWall = null;
@@ -117,7 +117,7 @@ public class WallMover : MonoBehaviour
     {
         isSelected = true;
         currentWall.GetComponent<Renderer>().material = breakableSelected;
-        StartCoroutine(Constants.moveWall);
+        StartCoroutine(StringConstants.MOVE_WALL);
         Debug.Log("selected wall");
     }
 

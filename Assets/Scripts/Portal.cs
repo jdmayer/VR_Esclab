@@ -21,7 +21,7 @@ public class Portal : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.name == Constants.player || collision.name == Constants.manualPlayer)
+        if (collision.name == StringConstants.PLAYER || collision.name == StringConstants.MANUAL_PLAYER)
         {
             ChangeScene();
         }
@@ -32,10 +32,10 @@ public class Portal : MonoBehaviour
         character?.SetCharacterStats();
 
         var currentScene = SceneManager.GetActiveScene().name;
-        var currentSceneIndex = Array.IndexOf(Constants.labyrinthScenes, currentScene);
+        var currentSceneIndex = Array.IndexOf(StringConstants.LABYRINTH_SCENES, currentScene);
 
-        var newSceneIndex = currentSceneIndex + 1 == Constants.labyrinthScenes.Length ? 0 : currentSceneIndex + 1;
-        var newScene = Constants.labyrinthScenes[newSceneIndex];
+        var newSceneIndex = currentSceneIndex + 1 == StringConstants.LABYRINTH_SCENES.Length ? 0 : currentSceneIndex + 1;
+        var newScene = StringConstants.LABYRINTH_SCENES[newSceneIndex];
 
         Debug.Log("Portal entered, move from " + currentScene + " to " + newScene);
         StartCoroutine(LoadScene(newScene));
@@ -43,7 +43,7 @@ public class Portal : MonoBehaviour
 
     private IEnumerator LoadScene(string newScene)
     {
-        transition.SetTrigger(Constants.animationStart);
+        transition.SetTrigger(StringConstants.ANIMATION_START);
 
         yield return new WaitForSeconds(transitionTime);
 
