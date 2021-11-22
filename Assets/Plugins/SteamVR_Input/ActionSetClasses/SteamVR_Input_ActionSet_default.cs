@@ -105,6 +105,14 @@ namespace Valve.VR
             }
         }
         
+        public virtual SteamVR_Action_Boolean SelectWall
+        {
+            get
+            {
+                return SteamVR_Actions.default_SelectWall;
+            }
+        }
+        
         public virtual SteamVR_Action_Vibration Haptic
         {
             get

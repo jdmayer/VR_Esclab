@@ -25,9 +25,9 @@ namespace Valve.VR
         
         private static SteamVR_Input_ActionSet_mixedreality p_mixedreality;
         
-        private static SteamVR_Input_ActionSet_TestSet p_TestSet;
-        
         private static SteamVR_Input_ActionSet_NewSet p_NewSet;
+        
+        private static SteamVR_Input_ActionSet_Esclab p_Esclab;
         
         public static SteamVR_Input_ActionSet_default _default
         {
@@ -61,19 +61,19 @@ namespace Valve.VR
             }
         }
         
-        public static SteamVR_Input_ActionSet_TestSet TestSet
-        {
-            get
-            {
-                return SteamVR_Actions.p_TestSet.GetCopy<SteamVR_Input_ActionSet_TestSet>();
-            }
-        }
-        
         public static SteamVR_Input_ActionSet_NewSet NewSet
         {
             get
             {
                 return SteamVR_Actions.p_NewSet.GetCopy<SteamVR_Input_ActionSet_NewSet>();
+            }
+        }
+        
+        public static SteamVR_Input_ActionSet_Esclab Esclab
+        {
+            get
+            {
+                return SteamVR_Actions.p_Esclab.GetCopy<SteamVR_Input_ActionSet_Esclab>();
             }
         }
         
@@ -83,15 +83,15 @@ namespace Valve.VR
             SteamVR_Actions.p_platformer = ((SteamVR_Input_ActionSet_platformer)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_platformer>("/actions/platformer")));
             SteamVR_Actions.p_buggy = ((SteamVR_Input_ActionSet_buggy)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_buggy>("/actions/buggy")));
             SteamVR_Actions.p_mixedreality = ((SteamVR_Input_ActionSet_mixedreality)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_mixedreality>("/actions/mixedreality")));
-            SteamVR_Actions.p_TestSet = ((SteamVR_Input_ActionSet_TestSet)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_TestSet>("/actions/TestSet")));
             SteamVR_Actions.p_NewSet = ((SteamVR_Input_ActionSet_NewSet)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_NewSet>("/actions/NewSet")));
+            SteamVR_Actions.p_Esclab = ((SteamVR_Input_ActionSet_Esclab)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_Esclab>("/actions/Esclab")));
             Valve.VR.SteamVR_Input.actionSets = new Valve.VR.SteamVR_ActionSet[] {
                     SteamVR_Actions._default,
                     SteamVR_Actions.platformer,
                     SteamVR_Actions.buggy,
                     SteamVR_Actions.mixedreality,
-                    SteamVR_Actions.TestSet,
-                    SteamVR_Actions.NewSet};
+                    SteamVR_Actions.NewSet,
+                    SteamVR_Actions.Esclab};
         }
     }
 }

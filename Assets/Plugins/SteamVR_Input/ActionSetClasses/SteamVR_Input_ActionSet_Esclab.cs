@@ -14,14 +14,14 @@ namespace Valve.VR
     using UnityEngine;
     
     
-    public class SteamVR_Input_ActionSet_TestSet : Valve.VR.SteamVR_ActionSet
+    public class SteamVR_Input_ActionSet_Esclab : Valve.VR.SteamVR_ActionSet
     {
         
-        public virtual SteamVR_Action_Boolean ActionClick
+        public virtual SteamVR_Action_Boolean Select_Wall
         {
             get
             {
-                return SteamVR_Actions.testSet_ActionClick;
+                return SteamVR_Actions.esclab_Select_Wall;
             }
         }
     }
