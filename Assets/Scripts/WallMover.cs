@@ -72,7 +72,8 @@ public class WallMover : MonoBehaviour
         {
             currentWall.GetComponent<Renderer>().material = breakable;
             currentWall = null;
-            isSelected = false; //TODO - what if it is moved
+            isSelected = false; 
+            StopCoroutine(Constants.moveWall);
         }
 
         GameObject closestVisibleWall = null;
@@ -116,7 +117,7 @@ public class WallMover : MonoBehaviour
     {
         isSelected = true;
         currentWall.GetComponent<Renderer>().material = breakableSelected;
-
+        StartCoroutine(Constants.moveWall);
         Debug.Log("selected wall");
     }
 
@@ -128,7 +129,30 @@ public class WallMover : MonoBehaviour
         isSelected = false;
     }
 
-
+    private float moveSpeed = 0.5f;
+    private IEnumerator MoveWall()
+    {
+        while (true)
+        {
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                currentWall.transform.position += new Vector3(0, 0, 1) * Time.deltaTime * moveSpeed;
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                currentWall.transform.position -= new Vector3(0, 0, 1) * Time.deltaTime * moveSpeed;
+            }
+            else if (Input.GetKey(KeyCode.UpArrow))
+            {
+                currentWall.transform.position += transform.forward * Time.deltaTime * moveSpeed;
+            }
+            else if (Input.GetKey(KeyCode.DownArrow))
+            {
+                currentWall.transform.position -= transform.forward * Time.deltaTime * moveSpeed;
+            }
+            yield return null;
+        }
+    }
 
     private void RotateWall()
     {
@@ -140,9 +164,6 @@ public class WallMover : MonoBehaviour
         currentWall.transform.RotateAround(currentWall.transform.position, Vector3.up, 90);
     }
 
-    // TODO
-    // move around
-    // rotate
     // set on new position
     // collision check!
 }

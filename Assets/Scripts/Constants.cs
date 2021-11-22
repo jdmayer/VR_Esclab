@@ -6,9 +6,13 @@ namespace Assets.Scripts
 {
     public static class Constants
     {
+        //gameobjects
         public static string player = "Player";
         public static string manualPlayer = "ManualPlayer";
         public static string breakableWall = "Breakable Wall";
+
+        //coroutine
+        public static string moveWall = "MoveWall";
 
         public static string[] labyrinthScenes = { 
             "Labyrinth_A", 
