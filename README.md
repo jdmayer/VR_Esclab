@@ -38,3 +38,13 @@ HUD:
 Goal:
 
 - A not so scary game where exploration and curiosity is the main focus
+
+
+
+https://www.youtube.com/watch?v=0Ccb9pqAfyk
+
+Freesound:
+Heartbeat: https://freesound.org/people/newlocknew/sounds/608243/
+
+Healthbar image
+https://www.youtube.com/watch?v=FQNZwcd6FaY
