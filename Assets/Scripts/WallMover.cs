@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,10 +21,6 @@ public class WallMover : MonoBehaviour
     private IList<GameObject> breakableWalls = new List<GameObject>();
     private GameObject currentWall;
     private bool isSelected = false;
-
-    //pay attention - only one wall at a time should be selected
-    //check if wall is currently selected
-
 
     void Start()
     {
@@ -56,6 +53,11 @@ public class WallMover : MonoBehaviour
             {
                 SelectWall();
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RotateWall();
         }
     } 
 
@@ -124,6 +126,18 @@ public class WallMover : MonoBehaviour
         currentWall.GetComponent<Renderer>().material = breakableHighlighted;
 
         isSelected = false;
+    }
+
+
+
+    private void RotateWall()
+    {
+        if (currentWall == null || !isSelected)
+        {
+            return;
+        }
+
+        currentWall.transform.RotateAround(currentWall.transform.position, Vector3.up, 90);
     }
 
     // TODO
