@@ -50,6 +50,10 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/default/in/SelectWall",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
@@ -83,7 +87,7 @@
       "requirement": "optional"
     },
     {
-      "name": "/actions/TestSet/in/ActionClick",
+      "name": "/actions/Esclab/in/Select Wall",
       "type": "boolean"
     }
   ],
@@ -105,11 +109,11 @@
       "usage": "single"
     },
     {
-      "name": "/actions/TestSet",
+      "name": "/actions/NewSet",
       "usage": "single"
     },
     {
-      "name": "/actions/NewSet",
+      "name": "/actions/Esclab",
       "usage": "single"
     }
   ],

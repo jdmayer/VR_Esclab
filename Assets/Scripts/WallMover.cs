@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
 /// <summary>
 /// Author: Janine Mayer
@@ -14,6 +15,9 @@ public class WallMover : MonoBehaviour
 {
     public float minDistance = 1.2f;
 
+    public SteamVR_Action_Boolean Selection;
+    public SteamVR_Input_Sources handType;
+
     private Material breakable;
     private Material breakableHighlighted;
     private Material breakableSelected;
@@ -22,8 +26,12 @@ public class WallMover : MonoBehaviour
     private GameObject currentWall;
     private bool isSelected = false;
 
+    //change script!!
     void Start()
     {
+        Selection.AddOnStateDownListener(Select, handType);
+        Selection.AddOnStateUpListener(Deselect, handType);
+
         breakable =
             Resources.Load(StringConstants.MATERIAL_BREAKABLE, typeof(Material)) as Material;
         breakableHighlighted = 
@@ -37,6 +45,16 @@ public class WallMover : MonoBehaviour
                 breakableWalls.Add(go);
             }
         }
+    }
+
+    public void Select(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
+    {
+        Debug.Log("select");
+    }
+
+    public void Deselect(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
+    {
+        Debug.Log("deselect");
     }
 
     void Update()
