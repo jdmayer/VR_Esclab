@@ -9,6 +9,6 @@ public static class Constants
     public const int HEALTH_VALUE = 1;
 
     public const float ENEMY_MASS = 5.0f;
-    public const int DISTANCE_TO_ENEMY_UNTIL_MOVE = 20;
+    public const int DISTANCE_TO_ENEMY_UNTIL_MOVE = 10;
     public const int ATTACKING_DISTANCE = 7;
 }

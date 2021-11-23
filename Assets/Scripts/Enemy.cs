@@ -18,6 +18,9 @@ public class Enemy : MonoBehaviour
     AIPath pathSetter;
     Animator animator;
 
+    private float waitTime = 1.0f;
+    private float timer = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -92,7 +95,16 @@ public class Enemy : MonoBehaviour
 
                     if (GetDistanceToPlayer() <= Constants.ATTACKING_DISTANCE)//--------------------------------------------------------- CHECK IF Close to Player
                         {
+                            timer += Time.deltaTime;
+                            if (timer > waitTime)
+                            {
+                                Attack();
+                                timer = timer - waitTime;
+                            Debug.Log("Some time has passed");
+                            }
+                            
                             isAttacking = true;
+                            isFlying = false;
                             currentAnimation = -1;
                         } else
                         {
@@ -128,6 +140,7 @@ public class Enemy : MonoBehaviour
                     } else if (isFlying)
                     {
                         currentAnimation = -1;
+                        isAttacking = false;
                     }
                     else
                     {
@@ -139,11 +152,11 @@ public class Enemy : MonoBehaviour
             }
 
 
-        Debug.Log("currentAnimation" + currentAnimation);
+        /*Debug.Log("currentAnimation" + currentAnimation);
         Debug.Log("distance to player" + GetDistanceToPlayer());
         Debug.Log("isFlying: " + isFlying);
         Debug.Log("isSleeping: " + isAsleep);
-        Debug.Log("isAttacking: " + isAttacking);
+        Debug.Log("isAttacking: " + isAttacking);*/
     }
 
     bool decideIfFlying()
