@@ -18,6 +18,7 @@ public class WallMover : MonoBehaviour
     public SteamVR_Action_Boolean Selection;
     public SteamVR_Action_Boolean Rotation;
     public SteamVR_Input_Sources handType;
+    //public SteamVR_TrackedObject leftCtrl, rightCtrl;
 
     private Material breakable;
     private Material breakableHighlighted;
@@ -31,11 +32,13 @@ public class WallMover : MonoBehaviour
 
     private float moveSpeed = 0.5f;
 
+    private GameObject leftController;
 
     void Start()
     {
         Selection.AddOnStateDownListener(Select, handType);
         Selection.AddOnStateUpListener(Deselect, handType);
+        Rotation.AddOnStateUpListener(RotateWall, handType);
 
         breakable =
             Resources.Load(StringConstants.MATERIAL_BREAKABLE, typeof(Material)) as Material;
@@ -50,6 +53,11 @@ public class WallMover : MonoBehaviour
         { 
             if (go.name.Contains(StringConstants.BREAKABLE_WALL) && go.activeInHierarchy) {
                 breakableWalls.Add(go);
+            }
+
+            if (go.name =="LeftHand")
+            {
+                leftController = go;
             }
         }
     }
@@ -67,11 +75,10 @@ public class WallMover : MonoBehaviour
             return;
         }
 
-        Debug.Log("Wall selected");
+        Debug.Log("Wall selected " + leftController.transform.position.x);
 
         currentWall.GetComponent<Renderer>().material = breakableSelected;
 
-        currentWall.AddComponent<Rigidbody>();
         StartCoroutine(StringConstants.MOVE_WALL);
         isSelected = true;
 
@@ -83,13 +90,15 @@ public class WallMover : MonoBehaviour
         if (currentWall == null)
         {
             Debug.Log("No wall to deselect");
+            return;
         }
 
-        Debug.Log("Wall deselected");
+        Debug.Log("Wall deselected" + leftController.transform.position.y);
 
         SetWall();
 
-        //Destroy(currentWall.GetComponent<Rigidbody>());
+        StopCoroutine(StringConstants.MOVE_WALL);
+
         currentWall.GetComponent<Renderer>().material = breakableHighlighted;
         currentWall = null;
 
@@ -98,6 +107,7 @@ public class WallMover : MonoBehaviour
 
     private void RotateWall(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
+        Debug.Log("ROTATE!");
         if (currentWall == null || !isSelected)
         {
             return;
@@ -174,6 +184,11 @@ public class WallMover : MonoBehaviour
     {
         while (true)
         {
+            Debug.Log(leftController.transform.position.x + " " +leftController.transform.position.z);
+/*            var deviceLeft = leftCtrl.transform.position*/;
+            //currentWall.transform.position = deviceLeft;
+
+
             //if (Input.GetKey(KeyCode.RightArrow))
             //{
             //    currentWall.transform.position += new Vector3(0, 0, 1) * Time.deltaTime * moveSpeed;
@@ -192,7 +207,7 @@ public class WallMover : MonoBehaviour
             //}
 
 
-            currentWall.GetComponent<Renderer>().material = breakableSelectedInvalid;
+            //currentWall.GetComponent<Renderer>().material = breakableSelectedInvalid;
 
             yield return null;
         }
