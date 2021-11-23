@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using static Character;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,8 +13,10 @@ public class Enemy : MonoBehaviour
     bool isAttacking;
     float speed;
 
+    GameObject moveablePlayer;
     GameObject player;
-    float distanceToPlayer = 0;
+    Character characterComponent;
+    float distanceTomoveablePlayer = 0;
     AIDestinationSetter destinationObject;
     AIPath pathSetter;
     Animator animator;
@@ -40,8 +43,14 @@ public class Enemy : MonoBehaviour
         //this.gameObject.GetComponent<Rigidbody>().mass = Constants.ENEMY_MASS;
 
         player = FindPlayer();
-        distanceToPlayer = GetDistanceToPlayer();
+        moveablePlayer = FindmoveablePlayer();
+        distanceTomoveablePlayer = GetDistanceTomoveablePlayer();
 
+        characterComponent = player.GetComponent<Character>();
+        if (characterComponent == null)
+        {
+            Debug.LogError("Enemy.cs: Couldn't fetch Character Component. Check if the script was added to the Player!");
+        }
 
         destinationObject = this.gameObject.GetComponent<AIDestinationSetter>();
         if (destinationObject == null)
@@ -49,7 +58,7 @@ public class Enemy : MonoBehaviour
             Debug.LogError("Enemy.cs: Couldn't find DestinationSetter script! Please make sure it is added to the object");
         } else
         {
-            destinationObject.target = player.transform;
+            destinationObject.target = moveablePlayer.transform;
             Debug.Log("Destination set with target: " + destinationObject.target);
         }
 
@@ -63,7 +72,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //check for distance to player here -> define if either idle, running or attacking depending on currentAnimation
+        //check for distance to moveablePlayer here -> define if either idle, running or attacking depending on currentAnimation
         //only every 10 seconds?
 
         //Debug.Log(pathSetter.velocity.magnitude.ToString());
@@ -76,13 +85,13 @@ public class Enemy : MonoBehaviour
 
 
         //Debug.Log("Checking if distance is large enough...");
-        switch (GetDistanceToPlayer())
+        switch (GetDistanceTomoveablePlayer())
             {
-                //--------------------------------------------------------------------------------------------- IF PLAYER IS/COMES IN RANGE
+                //--------------------------------------------------------------------------------------------- IF moveablePlayer IS/COMES IN RANGE
                 case < Constants.DISTANCE_TO_ENEMY_UNTIL_MOVE:
                     if (pathSetter.canMove == false)
                     {
-                        //Debug.Log("Distance large enough, setting player");
+                        //Debug.Log("Distance large enough, setting moveablePlayer");
                         pathSetter.canMove = true;
                     }
 
@@ -93,7 +102,7 @@ public class Enemy : MonoBehaviour
                     if (pathSetter.velocity.magnitude <= 0.5)//-------------------------------------------- IF ENEMY DOESNT MOVE
                     {
 
-                    if (GetDistanceToPlayer() <= Constants.ATTACKING_DISTANCE)//--------------------------------------------------------- CHECK IF Close to Player
+                    if (GetDistanceTomoveablePlayer() <= Constants.ATTACKING_DISTANCE)//--------------------------------------------------------- CHECK IF Close to moveablePlayer
                         {
                             timer += Time.deltaTime;
                             if (timer > waitTime)
@@ -121,7 +130,7 @@ public class Enemy : MonoBehaviour
                 //TODO add animation
                 break;
 
-                //--------------------------------------------------------------------------------------------- IF PLAYER GOES OUT OF RANGE
+                //--------------------------------------------------------------------------------------------- IF moveablePlayer GOES OUT OF RANGE
                 case > Constants.DISTANCE_TO_ENEMY_UNTIL_MOVE:
                     
 
@@ -130,7 +139,7 @@ public class Enemy : MonoBehaviour
                     //Debug.Log("Distance is not large enough - Null");
                     if (pathSetter.canMove)
                     {
-                        //Debug.Log("Distance large enough, setting player");
+                        //Debug.Log("Distance large enough, setting moveablePlayer");
                         pathSetter.canMove = false;
                         
                     if (isAsleep)
@@ -153,7 +162,7 @@ public class Enemy : MonoBehaviour
 
 
         /*Debug.Log("currentAnimation" + currentAnimation);
-        Debug.Log("distance to player" + GetDistanceToPlayer());
+        Debug.Log("distance to moveablePlayer" + GetDistanceTomoveablePlayer());
         Debug.Log("isFlying: " + isFlying);
         Debug.Log("isSleeping: " + isAsleep);
         Debug.Log("isAttacking: " + isAttacking);*/
@@ -175,22 +184,43 @@ public class Enemy : MonoBehaviour
 
     void Attack()
     {
-        //Get Health Params of Player here and reduce it!
+        //Get Health Params of moveablePlayer here and reduce it!
+
+        characterComponent.ChangeCurrHealth(-10);
     }
 
-    float GetDistanceToPlayer()
+    float GetDistanceTomoveablePlayer()
     {
-        Vector3 playerPosition = player.transform.position;
+        Vector3 moveablePlayerPosition = moveablePlayer.transform.position;
         Vector3 enemyPosition = this.gameObject.transform.position;
-        //Debug.Log((playerPosition - enemyPosition).magnitude);
-        return (playerPosition-enemyPosition).magnitude;
+        //Debug.Log((moveablePlayerPosition - enemyPosition).magnitude);
+        return (moveablePlayerPosition-enemyPosition).magnitude;
+    }
+
+    GameObject FindmoveablePlayer()
+    {
+        GameObject moveablePlayer = GameObject.Find("FollowHead");
+
+      //GameObject moveablePlayer = GameObject.Find("moveablePlayer");
+
+        if (moveablePlayer == null)
+        {
+            moveablePlayer = GameObject.Find("followhead");
+        }
+
+        if (moveablePlayer == null)
+        {
+            Debug.LogError("Enemy.cs: Couldn't find moveablePlayer!");
+        }
+
+        return moveablePlayer;
     }
 
     GameObject FindPlayer()
     {
-        GameObject player = GameObject.Find("FollowHead");
+        GameObject player = GameObject.Find("Player");
 
-      //GameObject player = GameObject.Find("Player");
+        //GameObject moveablePlayer = GameObject.Find("moveablePlayer");
 
         if (player == null)
         {
@@ -200,10 +230,10 @@ public class Enemy : MonoBehaviour
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
-        } 
+        }
         if (player == null)
         {
-            Debug.LogError("Enemy.cs: Couldn't find Player!");
+            Debug.LogError("Enemy.cs: Couldn't find player!");
         }
 
         return player;
