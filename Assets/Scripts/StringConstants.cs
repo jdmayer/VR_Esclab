@@ -25,5 +25,6 @@ namespace Assets.Scripts
         public static string MATERIAL_BREAKABLE = "Materials/Breakable";
         public static string MATERIAL_BREAKABLE_HIGHLIGHTED = "Materials/Breakable Highlighted";
         public static string MATERIAL_BREAKABLE_SELECTED = "Materials/Breakable Selected";
+        public static string MATERIAL_BREAKABLE_SELECTED_INVALID = "Materials/Breakable Selected Invalid";
     }
 }
