@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour
     AIDestinationSetter destinationObject;
     AIPath pathSetter;
     Animator animator;
-    public int distance = 7;
 
     // Start is called before the first frame update
     void Start()
@@ -55,11 +54,7 @@ public class Enemy : MonoBehaviour
         if (pathSetter == null)
         {
             Debug.LogError("Enemy.cs: Couldn't find DestinationSetter script! Please make sure it is added to the object");
-        }
-        else
-        {
-            Debug.Log(pathSetter.velocity.magnitude.ToString());
-        }
+        }   
     }
 
     // Update is called once per frame
@@ -95,7 +90,7 @@ public class Enemy : MonoBehaviour
                     if (pathSetter.velocity.magnitude <= 0.5)//-------------------------------------------- IF ENEMY DOESNT MOVE
                     {
 
-                    if (GetDistanceToPlayer() <= distance)//--------------------------------------------------------- CHECK IF Close to Player
+                    if (GetDistanceToPlayer() <= Constants.ATTACKING_DISTANCE)//--------------------------------------------------------- CHECK IF Close to Player
                         {
                             isAttacking = true;
                             currentAnimation = -1;
