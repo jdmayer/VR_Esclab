@@ -93,6 +93,10 @@ public class WallMover : MonoBehaviour
         {
             currentWall.GetComponent<Renderer>().material = breakableHighlighted;
         }
+        else
+        {
+            currentWall.GetComponent<Renderer>().material = breakable;
+        }
 
         currentWall = null;
     }
@@ -153,6 +157,7 @@ public class WallMover : MonoBehaviour
     {
         if (currentWall == null)
         {
+            isSelected = false;
             return false;
         }
 
