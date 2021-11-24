@@ -28,7 +28,7 @@ public class WallMover : MonoBehaviour
 
     private IList<GameObject> breakableWalls = new List<GameObject>();
     private GameObject currentWall;
-    private Transform originalPositionWall;
+    private GameObject originalPositionWall;
     private bool isSelected = false;
 
 
@@ -72,10 +72,8 @@ public class WallMover : MonoBehaviour
 
         StartCoroutine(StringConstants.MOVE_WALL);
         isSelected = true;
-
     }
 
-    // TODO - check if wall is highlighted after deselection
     public void Deselect(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
         if (currentWall == null)
@@ -88,10 +86,15 @@ public class WallMover : MonoBehaviour
 
         StopCoroutine(StringConstants.MOVE_WALL);
 
-        currentWall.GetComponent<Renderer>().material = breakableHighlighted;
-        currentWall = null;
-
         isSelected = false;
+
+        //reset highlight in case wall is still in range
+        if (IsCurrentWallValid())
+        {
+            currentWall.GetComponent<Renderer>().material = breakableHighlighted;
+        }
+
+        currentWall = null;
     }
 
     private void RotateWall(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
@@ -140,7 +143,9 @@ public class WallMover : MonoBehaviour
         {
             currentWall = closestVisibleWall;
             currentWall.GetComponent<Renderer>().material = breakableHighlighted;
-            originalPositionWall = currentWall.transform;
+            originalPositionWall = new GameObject();
+            originalPositionWall.transform.position = new Vector3(currentWall.transform.position.x, currentWall.transform.position.y, currentWall.transform.position.z); 
+            originalPositionWall.transform.rotation = currentWall.transform.rotation;
         }
     }
 
@@ -166,11 +171,11 @@ public class WallMover : MonoBehaviour
 
     private void SetWall()
     {
-        if (currentWall.GetComponent<Renderer>().material == breakableSelectedInvalid)
+        // due to long names the check for names does not work!
+        if (currentWall.GetComponent<Renderer>().material.color == breakableSelectedInvalid.color)
         {
-            Debug.Log("NOT VALID POSITION!");
-            currentWall.transform.rotation = originalPositionWall.rotation;
-            currentWall.transform.position = originalPositionWall.position;
+            currentWall.transform.position = new Vector3(originalPositionWall.transform.position.x, originalPositionWall.transform.position.y, originalPositionWall.transform.position.z);
+            currentWall.transform.rotation = originalPositionWall.transform.rotation;
         }
     }
 
@@ -185,8 +190,6 @@ public class WallMover : MonoBehaviour
             var currZ= rightController.transform.position.z;
 
             currentWall.transform.position += new Vector3(currX - prevX, 0, currZ - prevZ);
-
-            //currentWall.GetComponent<Renderer>().material = breakableSelectedInvalid;
 
             prevX = rightController.transform.position.x;
             prevZ = rightController.transform.position.z;
