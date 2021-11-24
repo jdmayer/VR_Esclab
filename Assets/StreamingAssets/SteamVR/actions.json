@@ -89,6 +89,10 @@
     {
       "name": "/actions/esclab/in/RotateWall",
       "type": "boolean"
+    },
+    {
+      "name": "/actions/esclab/in/DisplayStats",
+      "type": "boolean"
     }
   ],
   "action_sets": [

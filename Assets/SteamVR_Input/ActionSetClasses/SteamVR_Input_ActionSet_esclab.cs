@@ -32,5 +32,13 @@ namespace Valve.VR
                 return SteamVR_Actions.esclab_RotateWall;
             }
         }
+        
+        public virtual SteamVR_Action_Boolean DisplayStats
+        {
+            get
+            {
+                return SteamVR_Actions.esclab_DisplayStats;
+            }
+        }
     }
 }
