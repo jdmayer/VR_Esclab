@@ -16,21 +16,27 @@ public class WallMover : MonoBehaviour
     public float minDistance = 1.2f;
 
     public SteamVR_Action_Boolean Selection;
+    public SteamVR_Action_Boolean Rotation;
     public SteamVR_Input_Sources handType;
+
+    public GameObject rightController;
 
     private Material breakable;
     private Material breakableHighlighted;
     private Material breakableSelected;
+    private Material breakableSelectedInvalid;
 
     private IList<GameObject> breakableWalls = new List<GameObject>();
     private GameObject currentWall;
+    private GameObject originalPositionWall;
     private bool isSelected = false;
 
-    //change script!!
+
     void Start()
     {
         Selection.AddOnStateDownListener(Select, handType);
         Selection.AddOnStateUpListener(Deselect, handType);
+        Rotation.AddOnStateUpListener(RotateWall, handType);
 
         breakable =
             Resources.Load(StringConstants.MATERIAL_BREAKABLE, typeof(Material)) as Material;
@@ -38,6 +44,8 @@ public class WallMover : MonoBehaviour
             Resources.Load(StringConstants.MATERIAL_BREAKABLE_HIGHLIGHTED, typeof(Material)) as Material;
         breakableSelected =
             Resources.Load(StringConstants.MATERIAL_BREAKABLE_SELECTED, typeof(Material)) as Material;
+        breakableSelectedInvalid =
+            Resources.Load(StringConstants.MATERIAL_BREAKABLE_SELECTED_INVALID, typeof(Material)) as Material;
 
         foreach (GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[])
         { 
@@ -47,37 +55,61 @@ public class WallMover : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        CheckWalls();
+    }
+
     public void Select(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
-        Debug.Log("select");
+        if (currentWall == null)
+        {
+            Debug.Log("No wall to select");
+            return;
+        }
+
+        currentWall.GetComponent<Renderer>().material = breakableSelected;
+
+        StartCoroutine(StringConstants.MOVE_WALL);
+        isSelected = true;
     }
 
     public void Deselect(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
-        Debug.Log("deselect");
+        if (currentWall == null)
+        {
+            Debug.Log("No wall to deselect");
+            return;
+        }
+
+        SetWall();
+
+        StopCoroutine(StringConstants.MOVE_WALL);
+
+        isSelected = false;
+
+        //reset highlight in case wall is still in range
+        if (IsCurrentWallValid())
+        {
+            currentWall.GetComponent<Renderer>().material = breakableHighlighted;
+        }
+        else
+        {
+            currentWall.GetComponent<Renderer>().material = breakable;
+        }
+
+        currentWall = null;
     }
 
-    void Update()
+    private void RotateWall(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
-        CheckWalls();
-
-        if (currentWall != null && Input.GetKeyDown(KeyCode.M))
+        if (currentWall == null || !isSelected)
         {
-            if (isSelected)
-            {
-                SetWall();
-            }
-            else
-            {
-                SelectWall();
-            }
+            return;
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            RotateWall();
-        }
-    } 
+        currentWall.transform.RotateAround(currentWall.transform.position, Vector3.up, 90);
+    }
 
     private void CheckWalls()
     {
@@ -98,7 +130,7 @@ public class WallMover : MonoBehaviour
         var distance = minDistance;
         foreach (var wallObject in breakableWalls)
         {
-            if (!wallObject.GetComponent<Renderer>().isVisible)
+            if (!wallObject || !wallObject.GetComponent<Renderer>().isVisible)
             {
                 continue;
             }
@@ -114,7 +146,10 @@ public class WallMover : MonoBehaviour
         if (closestVisibleWall != null)
         {
             currentWall = closestVisibleWall;
-            currentWall.GetComponent<Renderer>().material = breakableHighlighted;            
+            currentWall.GetComponent<Renderer>().material = breakableHighlighted;
+            originalPositionWall = new GameObject();
+            originalPositionWall.transform.position = new Vector3(currentWall.transform.position.x, currentWall.transform.position.y, currentWall.transform.position.z); 
+            originalPositionWall.transform.rotation = currentWall.transform.rotation;
         }
     }
 
@@ -122,7 +157,15 @@ public class WallMover : MonoBehaviour
     {
         if (currentWall == null)
         {
+            isSelected = false;
             return false;
+        }
+
+        // user is allowed to have a bigger distance when moving the wall
+        // happens e.g. due to rotation
+        if (isSelected) 
+        {
+            return true;
         }
 
         var isVisible = currentWall.GetComponent<Renderer>().isVisible;
@@ -131,57 +174,32 @@ public class WallMover : MonoBehaviour
         return isVisible && distance <= minDistance;
     }
 
-    void SelectWall()
+    private void SetWall()
     {
-        isSelected = true;
-        currentWall.GetComponent<Renderer>().material = breakableSelected;
-        StartCoroutine(StringConstants.MOVE_WALL);
-        Debug.Log("selected wall");
+        // due to long names the check for names does not work!
+        if (currentWall.GetComponent<Renderer>().material.color == breakableSelectedInvalid.color)
+        {
+            currentWall.transform.position = new Vector3(originalPositionWall.transform.position.x, originalPositionWall.transform.position.y, originalPositionWall.transform.position.z);
+            currentWall.transform.rotation = originalPositionWall.transform.rotation;
+        }
     }
 
-    void SetWall()
-    {
-        Debug.Log("set wall");
-        currentWall.GetComponent<Renderer>().material = breakableHighlighted;
-
-        isSelected = false;
-    }
-
-    private float moveSpeed = 0.5f;
     private IEnumerator MoveWall()
     {
+        var prevX = rightController.transform.position.x;
+        var prevZ = rightController.transform.position.z;
+
         while (true)
         {
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                currentWall.transform.position += new Vector3(0, 0, 1) * Time.deltaTime * moveSpeed;
-            }
-            else if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                currentWall.transform.position -= new Vector3(0, 0, 1) * Time.deltaTime * moveSpeed;
-            }
-            else if (Input.GetKey(KeyCode.UpArrow))
-            {
-                currentWall.transform.position += transform.forward * Time.deltaTime * moveSpeed;
-            }
-            else if (Input.GetKey(KeyCode.DownArrow))
-            {
-                currentWall.transform.position -= transform.forward * Time.deltaTime * moveSpeed;
-            }
+            var currX = rightController.transform.position.x;
+            var currZ= rightController.transform.position.z;
+
+            currentWall.transform.position += new Vector3(currX - prevX, 0, currZ - prevZ);
+
+            prevX = rightController.transform.position.x;
+            prevZ = rightController.transform.position.z;
+
             yield return null;
         }
     }
-
-    private void RotateWall()
-    {
-        if (currentWall == null || !isSelected)
-        {
-            return;
-        }
-
-        currentWall.transform.RotateAround(currentWall.transform.position, Vector3.up, 90);
-    }
-
-    // set on new position
-    // collision check!
 }

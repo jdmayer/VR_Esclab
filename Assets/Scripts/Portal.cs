@@ -21,7 +21,7 @@ public class Portal : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.name == StringConstants.PLAYER || collision.name == StringConstants.MANUAL_PLAYER)
+        if (collision.name == StringConstants.VIVE_CHARACTER || collision.name == StringConstants.MANUAL_PLAYER)
         {
             ChangeScene();
         }
@@ -43,8 +43,12 @@ public class Portal : MonoBehaviour
 
     private IEnumerator LoadScene(string newScene)
     {
-        transition.SetTrigger(StringConstants.ANIMATION_START);
-
+        //transition.SetTrigger(StringConstants.ANIMATION_FADE);
+        var playerGameObject = GameObject.Find(StringConstants.PLAYER);
+        if (playerGameObject)
+        {
+            //todo -  
+        }
         yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(newScene);

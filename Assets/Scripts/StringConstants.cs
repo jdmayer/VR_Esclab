@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// Author: Janine Mayer
+/// Author: Axel Bauer, Janine Mayer
 /// Class containing all needed constants to void string cluttering within project
 /// </summary>
 namespace Assets.Scripts
@@ -8,6 +8,8 @@ namespace Assets.Scripts
     {
         //gameobjects
         public static string PLAYER = "Player";
+        public static string HAND_COLLIDER = "HandCollider";
+        public static string VIVE_CHARACTER = "HeadCollider";
         public static string MANUAL_PLAYER = "ManualPlayer";
         public static string BREAKABLE_WALL = "Breakable Wall";
 
@@ -20,10 +22,12 @@ namespace Assets.Scripts
         };
 
         public static string ANIMATION_START = "Start";
+        public static string ANIMATION_FADE = "FadeOut";
         public static string ANIMATION_ISHURT = "IsHurt";
 
         public static string MATERIAL_BREAKABLE = "Materials/Breakable";
         public static string MATERIAL_BREAKABLE_HIGHLIGHTED = "Materials/Breakable Highlighted";
         public static string MATERIAL_BREAKABLE_SELECTED = "Materials/Breakable Selected";
+        public static string MATERIAL_BREAKABLE_SELECTED_INVALID = "Materials/Breakable Selected Invalid";
     }
 }

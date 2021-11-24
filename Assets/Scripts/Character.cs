@@ -14,12 +14,10 @@ public class Character : MonoBehaviour
     private int maxHealth;
     private int painLevel;
 
-    private bool isHoldingItem;
-
     public void SetCurrHealth(int newCurrHealth)
     {
         CheckHealthCondition(currHealth, newCurrHealth);
-        this.currHealth = newCurrHealth < 0 
+        this.currHealth = newCurrHealth <= 0 
             ? 0 : newCurrHealth > maxHealth 
             ? maxHealth : newCurrHealth;
         HealthBar?.UpdateStatBar((float)currHealth / (float)maxHealth);
@@ -68,10 +66,9 @@ public class Character : MonoBehaviour
     {
     }
 
+    // TODO after scene chanage probably re-trigger pulsate animation?
     private void CheckHealthCondition(int oldHealth, int newHealth)
     {
-        Debug.Log(oldHealth + " => " + newHealth);
-                
         if (newHealth <= painLevel)
         {
             if (FieldOfView && oldHealth >= painLevel)
@@ -99,6 +96,11 @@ public class Character : MonoBehaviour
 
     public void SetCharacterStats()
     {
+        if (maxHealth == 0)
+        {
+            return;
+        }
+
         PlayerPrefs.SetInt(CharacterStats.MaxHealth, maxHealth);
         PlayerPrefs.SetInt(CharacterStats.CurrHealth, currHealth);
         PlayerPrefs.SetInt(CharacterStats.PainLevel, painLevel);
@@ -106,7 +108,13 @@ public class Character : MonoBehaviour
 
     public void UpdateValuesWithCharacterStats()
     {
-        SetMaxHealth(PlayerPrefs.GetInt(CharacterStats.MaxHealth));
+        var savedMaxHealth = PlayerPrefs.GetInt(CharacterStats.MaxHealth);
+        if (savedMaxHealth == 0)
+        {
+            return;
+        }
+
+        SetMaxHealth(savedMaxHealth);
         SetCurrHealth(PlayerPrefs.GetInt(CharacterStats.CurrHealth));
         SetPainLevel(PlayerPrefs.GetInt(CharacterStats.PainLevel));
     }

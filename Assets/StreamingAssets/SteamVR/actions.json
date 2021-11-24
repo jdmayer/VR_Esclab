@@ -81,6 +81,18 @@
       "name": "/actions/mixedreality/in/ExternalCamera",
       "type": "pose",
       "requirement": "optional"
+    },
+    {
+      "name": "/actions/esclab/in/SelectWall",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/esclab/in/RotateWall",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/esclab/in/DisplayStats",
+      "type": "boolean"
     }
   ],
   "action_sets": [
@@ -98,6 +110,10 @@
     },
     {
       "name": "/actions/mixedreality",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/esclab",
       "usage": "single"
     }
   ],
