@@ -21,7 +21,7 @@ public class Portal : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.name == StringConstants.PLAYER || collision.name == StringConstants.MANUAL_PLAYER)
+        if (collision.name == StringConstants.VIVE_CHARACTER || collision.name == StringConstants.MANUAL_PLAYER)
         {
             ChangeScene();
         }

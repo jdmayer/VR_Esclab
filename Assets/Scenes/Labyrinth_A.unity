@@ -1065,12 +1065,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 621694214}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &621694216 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 144230, guid: dc06161b6d97feb419f45f03b62e14b9,
-    type: 3}
-  m_PrefabInstance: {fileID: 621694214}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &626189597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1332,7 +1326,7 @@ PrefabInstance:
         type: 3}
       propertyPath: character
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1148335778}
     - target: {fileID: 1792800642925722608, guid: 2be70852e15c5544ea29dff2698e50de,
         type: 3}
       propertyPath: transition
@@ -1920,8 +1914,7 @@ MonoBehaviour:
   Rotation:
     actionPath: /actions/esclab/in/RotateWall
     needsReinit: 0
-  handType: 0
-  leftController: {fileID: 621694216}
+  handType: 2
   rightController: {fileID: 621694215}
 --- !u!114 &1148335778
 MonoBehaviour:
