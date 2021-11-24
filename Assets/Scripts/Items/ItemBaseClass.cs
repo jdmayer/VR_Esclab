@@ -11,8 +11,7 @@ public class ItemBaseClass : MonoBehaviour
     protected bool taken;
     protected bool isRotating;
     
-    protected AudioSource fallSound;
-
+    public AudioSource fallSound;
 
     // Start is called before the first frame update
     protected virtual void Start()

@@ -7,6 +7,11 @@ public class GameController : MonoBehaviour
 {
     private static GameController _instance;
 
+    public AudioSource soundtrack;
+    public AudioSource startingAndGameOverSound;
+
+
+
     public static GameController instance
     {
         get
@@ -43,6 +48,7 @@ public class GameController : MonoBehaviour
     public void Play()
     {
         //Play some audio!
+        soundtrack.Play();
     }
 
     //TODO OnSceneChange Event -> getScene
