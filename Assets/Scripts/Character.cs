@@ -14,8 +14,6 @@ public class Character : MonoBehaviour
     private int maxHealth;
     private int painLevel;
 
-    private bool isHoldingItem;
-
     public void SetCurrHealth(int newCurrHealth)
     {
         CheckHealthCondition(currHealth, newCurrHealth);
@@ -100,6 +98,11 @@ public class Character : MonoBehaviour
 
     public void SetCharacterStats()
     {
+        if (maxHealth == 0)
+        {
+            return;
+        }
+
         PlayerPrefs.SetInt(CharacterStats.MaxHealth, maxHealth);
         PlayerPrefs.SetInt(CharacterStats.CurrHealth, currHealth);
         PlayerPrefs.SetInt(CharacterStats.PainLevel, painLevel);
@@ -107,7 +110,13 @@ public class Character : MonoBehaviour
 
     public void UpdateValuesWithCharacterStats()
     {
-        SetMaxHealth(PlayerPrefs.GetInt(CharacterStats.MaxHealth));
+        var savedMaxHealth = PlayerPrefs.GetInt(CharacterStats.MaxHealth);
+        if (savedMaxHealth == 0)
+        {
+            return;
+        }
+
+        SetMaxHealth(savedMaxHealth);
         SetCurrHealth(PlayerPrefs.GetInt(CharacterStats.CurrHealth));
         SetPainLevel(PlayerPrefs.GetInt(CharacterStats.PainLevel));
     }
