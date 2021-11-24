@@ -61,7 +61,7 @@ public class InteractionHandler : MonoBehaviour
             }
 
             HealthItem item = collider.GetComponent<HealthItem>();
-            character.ChangeCurrHealth(item.value);
+            character.ChangeCurrHealth(item.GetValue());
             item.GotGrabbed();
         }
         else if (collider.GetComponent<ItemBaseClass>())
