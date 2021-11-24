@@ -185,8 +185,10 @@ public class Enemy : MonoBehaviour
     void Attack()
     {
         //Get Health Params of moveablePlayer here and reduce it!
-
-        characterComponent.ChangeCurrHealth(-10);
+        if (!characterComponent.IsAttackable())
+        {
+            characterComponent.ChangeCurrHealth(Random.Range(Constants.HEALTH_DAMAGE_APRX-3, Constants.HEALTH_DAMAGE_APRX + 3));
+        }
     }
 
     float GetDistanceTomoveablePlayer()

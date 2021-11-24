@@ -14,6 +14,8 @@ public class Character : MonoBehaviour
     private int maxHealth;
     private int painLevel;
 
+    private bool attackable;
+
     public void SetCurrHealth(int newCurrHealth)
     {
         CheckHealthCondition(currHealth, newCurrHealth);
@@ -60,6 +62,7 @@ public class Character : MonoBehaviour
         this.SetMaxHealth(maxHealth);
         this.SetCurrHealth(maxHealth);
         this.SetPainLevel(maxHealth / 2);
+        this.attackable = true;
     }
 
     public Character() : this(100)
@@ -117,6 +120,11 @@ public class Character : MonoBehaviour
         SetMaxHealth(savedMaxHealth);
         SetCurrHealth(PlayerPrefs.GetInt(CharacterStats.CurrHealth));
         SetPainLevel(PlayerPrefs.GetInt(CharacterStats.PainLevel));
+    }
+
+    public bool IsAttackable()
+    {
+        return attackable;
     }
 
     public void Start()

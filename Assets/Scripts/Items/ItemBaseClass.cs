@@ -10,9 +10,17 @@ public class ItemBaseClass : MonoBehaviour
 
     protected bool taken;
     protected bool isRotating;
+    
+    protected AudioSource fallSound;
+
+
+    public ItemBaseClass(int minValue, int maxValue) //Implement this in the subclasses!
+    {
+        InstantiateRandomValue(minValue, maxValue);
+    }
 
     // Start is called before the first frame update
-    protected void Start()
+    protected virtual void Start()
     {
         weight = Constants.ITEM_WEIGHT;
         isRotating = true;
@@ -21,7 +29,7 @@ public class ItemBaseClass : MonoBehaviour
     }
 
     // Update is called once per frame
-    protected void Update()
+    protected virtual void Update()
     {
         if (isRotating)
         {
@@ -53,7 +61,7 @@ public class ItemBaseClass : MonoBehaviour
         {
             Debug.Log("Play Sound now!");
             isRotating = false;
-            //    audioSource.Play();
+            fallSound.Play();
         }
     }
 
@@ -62,24 +70,24 @@ public class ItemBaseClass : MonoBehaviour
         return value;
     }
 
-    protected void GotGrabbed() // should be called when grabbed -> Player class
+    protected virtual void GotGrabbed() // should be called when grabbed -> Player class
     {
         this.taken = true;
     }
 
-    protected void NourishedPlayer()//Should be called when eaten -> Player class
+    protected virtual void NourishedPlayer()//Should be called when eaten -> Player class
     {
         DestroyItem();
     }
 
-    protected void DestroyItem()
+    protected virtual void DestroyItem()
     {
         Destroy(this.gameObject);
     }
 
     protected void InstantiateRandomValue(int min, int max)
     {
-        //implement random function
+        value = Random.Range(min, max);
     }
 }
 

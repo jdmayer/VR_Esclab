@@ -5,26 +5,30 @@ using UnityEngine;
 public class HealthItem : ItemBaseClass
 {
 
+    public HealthItem() : base(Constants.HEALTH_ITEM_VALUE_MIN, Constants.HEALTH_ITEM_VALUE_MAX)
+    {
+
+    }
+
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         base.Start();
-        this.value = Constants.HEALTH_VALUE;
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         base.Update();
     }
 
-    public void GotGrabbed()
+    protected override void GotGrabbed()
     {
         base.GotGrabbed();//Call the class header
         //TODO Maybe animation?
     }
 
-    private void DestroyItem()
+    protected override void DestroyItem()
     {
         //TODO maybe fancy shit?
         base.DestroyItem();//calls Destroy()
