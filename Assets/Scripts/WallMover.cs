@@ -18,7 +18,8 @@ public class WallMover : MonoBehaviour
     public SteamVR_Action_Boolean Selection;
     public SteamVR_Action_Boolean Rotation;
     public SteamVR_Input_Sources handType;
-    //public SteamVR_TrackedObject leftCtrl, rightCtrl;
+
+    public GameObject rightController;
 
     private Material breakable;
     private Material breakableHighlighted;
@@ -30,9 +31,6 @@ public class WallMover : MonoBehaviour
     private Transform originalPositionWall;
     private bool isSelected = false;
 
-    private float moveSpeed = 0.5f;
-
-    private GameObject leftController;
 
     void Start()
     {
@@ -54,11 +52,6 @@ public class WallMover : MonoBehaviour
             if (go.name.Contains(StringConstants.BREAKABLE_WALL) && go.activeInHierarchy) {
                 breakableWalls.Add(go);
             }
-
-            if (go.name =="LeftHand")
-            {
-                leftController = go;
-            }
         }
     }
 
@@ -74,8 +67,6 @@ public class WallMover : MonoBehaviour
             Debug.Log("No wall to select");
             return;
         }
-
-        Debug.Log("Wall selected " + leftController.transform.position.x);
 
         currentWall.GetComponent<Renderer>().material = breakableSelected;
 
@@ -93,8 +84,6 @@ public class WallMover : MonoBehaviour
             return;
         }
 
-        Debug.Log("Wall deselected" + leftController.transform.position.y);
-
         SetWall();
 
         StopCoroutine(StringConstants.MOVE_WALL);
@@ -107,7 +96,6 @@ public class WallMover : MonoBehaviour
 
     private void RotateWall(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
-        Debug.Log("ROTATE!");
         if (currentWall == null || !isSelected)
         {
             return;
@@ -163,6 +151,13 @@ public class WallMover : MonoBehaviour
             return false;
         }
 
+        // user is allowed to have a bigger distance when moving the wall
+        // happens e.g. due to rotation
+        if (isSelected) 
+        {
+            return true;
+        }
+
         var isVisible = currentWall.GetComponent<Renderer>().isVisible;
         var distance = Vector3.Distance(gameObject.transform.position, currentWall.transform.position);
 
@@ -179,35 +174,22 @@ public class WallMover : MonoBehaviour
         }
     }
 
-    //change moving 
     private IEnumerator MoveWall()
     {
+        var prevX = rightController.transform.position.x;
+        var prevZ = rightController.transform.position.z;
+
         while (true)
         {
-            Debug.Log(leftController.transform.position.x + " " +leftController.transform.position.z);
-/*            var deviceLeft = leftCtrl.transform.position*/;
-            //currentWall.transform.position = deviceLeft;
+            var currX = rightController.transform.position.x;
+            var currZ= rightController.transform.position.z;
 
-
-            //if (Input.GetKey(KeyCode.RightArrow))
-            //{
-            //    currentWall.transform.position += new Vector3(0, 0, 1) * Time.deltaTime * moveSpeed;
-            //}
-            //else if (Input.GetKey(KeyCode.LeftArrow))
-            //{
-            //    currentWall.transform.position -= new Vector3(0, 0, 1) * Time.deltaTime * moveSpeed;
-            //}
-            //else if (Input.GetKey(KeyCode.UpArrow))
-            //{
-            //    currentWall.transform.position += transform.forward * Time.deltaTime * moveSpeed;
-            //}
-            //else if (Input.GetKey(KeyCode.DownArrow))
-            //{
-            //    currentWall.transform.position -= transform.forward * Time.deltaTime * moveSpeed;
-            //}
-
+            currentWall.transform.position += new Vector3(currX - prevX, 0, currZ - prevZ);
 
             //currentWall.GetComponent<Renderer>().material = breakableSelectedInvalid;
+
+            prevX = rightController.transform.position.x;
+            prevZ = rightController.transform.position.z;
 
             yield return null;
         }
