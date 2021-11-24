@@ -130,7 +130,7 @@ public class WallMover : MonoBehaviour
         var distance = minDistance;
         foreach (var wallObject in breakableWalls)
         {
-            if (!wallObject.GetComponent<Renderer>().isVisible)
+            if (!wallObject || !wallObject.GetComponent<Renderer>().isVisible)
             {
                 continue;
             }

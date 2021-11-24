@@ -43,8 +43,12 @@ public class Portal : MonoBehaviour
 
     private IEnumerator LoadScene(string newScene)
     {
-        transition.SetTrigger(StringConstants.ANIMATION_FADE);
-
+        //transition.SetTrigger(StringConstants.ANIMATION_FADE);
+        var playerGameObject = GameObject.Find(StringConstants.PLAYER);
+        if (playerGameObject)
+        {
+            //todo -  
+        }
         yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(newScene);
