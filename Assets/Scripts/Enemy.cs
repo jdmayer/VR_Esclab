@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
         //this.gameObject.GetComponent<Rigidbody>().mass = Constants.ENEMY_MASS;
 
         player = FindPlayer();
-        moveablePlayer = FindmoveablePlayer();
+        moveablePlayer = FindMoveablePlayer();
         distanceTomoveablePlayer = GetDistanceTomoveablePlayer();
 
         characterComponent = player.GetComponent<Character>();
@@ -170,6 +170,7 @@ public class Enemy : MonoBehaviour
 
     bool decideIfFlying()
     {
+
         //use random choice here -> if yes, then current Animation = -1; do this only every 20 seconds!
         currentAnimation = -1;
         return true;
@@ -199,7 +200,7 @@ public class Enemy : MonoBehaviour
         return (moveablePlayerPosition-enemyPosition).magnitude;
     }
 
-    GameObject FindmoveablePlayer()
+    GameObject FindMoveablePlayer()
     {
         GameObject moveablePlayer = GameObject.Find("FollowHead");
 

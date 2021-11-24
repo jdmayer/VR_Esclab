@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Author: Axel Bauer
+ * This class is the base class of all items and defines some initial methods to access values
+ */
 public class ItemBaseClass : MonoBehaviour
 {
     protected int value;
@@ -41,26 +45,37 @@ public class ItemBaseClass : MonoBehaviour
     {
         if (collision.gameObject.name.Contains(StringConstants.HAND_COLLIDER))
         {
-            Debug.Log("Debug: Collission with player");//should be removed before production release
+            CollisionWithPlayer(collision.gameObject);
         }
 
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.name == "Enemy" || collision.gameObject.name == "enemy")//this is for testing purposes, delete it before publishing
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.name == "Enemy" || collision.gameObject.name == "enemy")
         {
-            GotGrabbed();
-            Debug.Log("Got Grabbed");
+            CollisionWithEnemy(collision.gameObject);
         }
 
         if (collision.gameObject.tag == "Ground" || collision.gameObject.name == "Ground" || collision.gameObject.name == "ground" || collision.gameObject.name == "Ground_Plane")
         {
-            Debug.Log("Play Sound now!");
-            isRotating = false;
-            fallSound.Play();
+            CollisionWithGround(collision.gameObject);
         }
     }
 
-    public int GetValue()
+    protected virtual void CollisionWithPlayer(GameObject player)
     {
-        return value;
+        Debug.Log("Debug: Collission with player");//TODO should be removed before production release
+    }
+
+    protected virtual void CollisionWithEnemy(GameObject enemy)
+    {
+        GotGrabbed();//TODO this is for testing purposes, delete it before publishing
+        Debug.Log("Got Grabbed");
+    }
+
+    protected virtual void CollisionWithGround(GameObject ground)
+    {
+        Debug.Log("Play Sound now!");
+        isRotating = false;
+        fallSound.volume = weight * 100;
+        fallSound.Play();
     }
 
     public virtual void GotGrabbed() // should be called when grabbed -> Player class
@@ -68,12 +83,13 @@ public class ItemBaseClass : MonoBehaviour
         this.taken = true;
     }
 
-    public virtual void NourishedPlayer()//Should be called when eaten -> Player class
+    public virtual int NourishedPlayer()//Should be called when eaten -> Player class
     {
         DestroyItem();
+        return value;
     }
 
-    public virtual void DestroyItem()
+    protected virtual void DestroyItem()
     {
         Destroy(this.gameObject);
     }

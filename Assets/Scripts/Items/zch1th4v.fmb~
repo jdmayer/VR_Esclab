@@ -17,10 +17,10 @@ public class HealthItem : ItemBaseClass
         base.Update();
     }
 
-    protected override void CollisionWithPlayer(GameObject player)
+    protected override void CollisionWithPlayer()
     {
-        base.CollisionWithPlayer(player);
-        player.GetComponent<Character>().SetCurrHealth(value);
+        base.CollisionWithPlayer();
+
     }
 
     public override void GotGrabbed()
@@ -29,7 +29,7 @@ public class HealthItem : ItemBaseClass
         //TODO Maybe animation?
     }
 
-    protected override void DestroyItem()
+    public override void DestroyItem()
     {
         //TODO maybe fancy shit?
         base.DestroyItem();//calls Destroy()

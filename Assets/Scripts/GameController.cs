@@ -53,7 +53,7 @@ public class GameController : MonoBehaviour
 
     //TODO OnSceneChange Event -> getScene
 
-    //function PlayerDied()
+    //function PlayerDied() get position ->
         //loadScene -> PlayerDied
             //Todo (innerhalb Scene -> )
             //Raum -> Mit Auswahlelementen -> 

@@ -25,7 +25,7 @@ public class InvincibleItem : ItemBaseClass
         //TODO Maybe animation?
     }
 
-    public override void DestroyItem()
+    protected override void DestroyItem()
     {
         //TODO maybe fancy shit?
         base.DestroyItem();//calls Destroy()

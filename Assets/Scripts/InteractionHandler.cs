@@ -26,8 +26,10 @@ public class InteractionHandler : MonoBehaviour
             }
 
             HealthItem item = collider.GetComponent<HealthItem>();
-            character.ChangeCurrHealth(item.GetValue());
             item.GotGrabbed();
+
+            //character.ChangeCurrHealth(item.GetValue()); -> TODO die Funktion NourishedPlayer verwenden, da dadurch das Item nur einmal eingenommen werden kann und gleich danach zerstoert wird
+            //wuerde da auch also einen Unterschied machen, wie ein Item noch zu sich genommen werden kann, sonst waere ja die "gotGrabbed"-Methode obsolet ;)
         }
         else if (collider.GetComponent<ItemBaseClass>())
         {

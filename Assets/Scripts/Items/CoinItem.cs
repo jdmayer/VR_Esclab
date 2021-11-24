@@ -8,6 +8,7 @@ public class CoinItem : ItemBaseClass
     protected override void Start()
     {
         base.Start();
+        this.weight = Constants.COIN_WEIGHT;
         InstantiateRandomValue(Constants.COIN_ITEM_VALUE_MIN, Constants.COIN_ITEM_VALUE_MAX);
     }
 
@@ -23,7 +24,7 @@ public class CoinItem : ItemBaseClass
         //TODO Maybe animation?
     }
 
-    public override void DestroyItem()
+    protected override void DestroyItem()
     {
         //TODO maybe fancy shit?
         base.DestroyItem();//calls Destroy()

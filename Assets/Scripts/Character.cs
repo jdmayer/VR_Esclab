@@ -15,6 +15,7 @@ public class Character : MonoBehaviour
     private int painLevel;
 
     private bool attackable;
+    private int currCoins;
 
     public void SetCurrHealth(int newCurrHealth)
     {
@@ -45,6 +46,11 @@ public class Character : MonoBehaviour
         return this.maxHealth;
     }
 
+    public void setAmountCoins(int amount)
+    {
+        currCoins += amount;
+    }
+
     public void SetPainLevel(int painLevel)
     {
         this.painLevel = painLevel < maxHealth && painLevel > 0 
@@ -63,6 +69,7 @@ public class Character : MonoBehaviour
         this.SetCurrHealth(maxHealth);
         this.SetPainLevel(maxHealth / 2);
         this.attackable = true;
+        this.currCoins = 0;
     }
 
     public Character() : this(100)
