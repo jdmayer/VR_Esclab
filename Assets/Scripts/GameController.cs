@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GameController : MonoBehaviour
 {
     private static GameController _instance;
@@ -43,4 +44,11 @@ public class GameController : MonoBehaviour
     {
         //Play some audio!
     }
+
+    //TODO OnSceneChange Event -> getScene
+
+    //function PlayerDied()
+        //loadScene -> PlayerDied
+            //Todo (innerhalb Scene -> )
+            //Raum -> Mit Auswahlelementen -> 
 }
