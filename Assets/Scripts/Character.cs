@@ -17,7 +17,7 @@ public class Character : MonoBehaviour
     public void SetCurrHealth(int newCurrHealth)
     {
         CheckHealthCondition(currHealth, newCurrHealth);
-        this.currHealth = newCurrHealth < 0 
+        this.currHealth = newCurrHealth <= 0 
             ? 0 : newCurrHealth > maxHealth 
             ? maxHealth : newCurrHealth;
         HealthBar?.UpdateStatBar((float)currHealth / (float)maxHealth);
