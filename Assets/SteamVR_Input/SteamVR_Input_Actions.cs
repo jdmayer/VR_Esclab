@@ -61,8 +61,6 @@ namespace Valve.VR
         
         private static SteamVR_Action_Boolean p_esclab_DisplayStats;
         
-        private static SteamVR_Action_Boolean p_esclab_GrabObject;
-        
         public static SteamVR_Action_Boolean default_InteractUI
         {
             get
@@ -239,14 +237,6 @@ namespace Valve.VR
             }
         }
         
-        public static SteamVR_Action_Boolean esclab_GrabObject
-        {
-            get
-            {
-                return SteamVR_Actions.p_esclab_GrabObject.GetCopy<SteamVR_Action_Boolean>();
-            }
-        }
-        
         private static void InitializeActionArrays()
         {
             Valve.VR.SteamVR_Input.actions = new Valve.VR.SteamVR_Action[] {
@@ -271,8 +261,7 @@ namespace Valve.VR
                     SteamVR_Actions.mixedreality_ExternalCamera,
                     SteamVR_Actions.esclab_SelectWall,
                     SteamVR_Actions.esclab_RotateWall,
-                    SteamVR_Actions.esclab_DisplayStats,
-                    SteamVR_Actions.esclab_GrabObject};
+                    SteamVR_Actions.esclab_DisplayStats};
             Valve.VR.SteamVR_Input.actionsIn = new Valve.VR.ISteamVR_Action_In[] {
                     SteamVR_Actions.default_InteractUI,
                     SteamVR_Actions.default_Teleport,
@@ -294,8 +283,7 @@ namespace Valve.VR
                     SteamVR_Actions.mixedreality_ExternalCamera,
                     SteamVR_Actions.esclab_SelectWall,
                     SteamVR_Actions.esclab_RotateWall,
-                    SteamVR_Actions.esclab_DisplayStats,
-                    SteamVR_Actions.esclab_GrabObject};
+                    SteamVR_Actions.esclab_DisplayStats};
             Valve.VR.SteamVR_Input.actionsOut = new Valve.VR.ISteamVR_Action_Out[] {
                     SteamVR_Actions.default_Haptic};
             Valve.VR.SteamVR_Input.actionsVibration = new Valve.VR.SteamVR_Action_Vibration[] {
@@ -316,8 +304,7 @@ namespace Valve.VR
                     SteamVR_Actions.buggy_Reset,
                     SteamVR_Actions.esclab_SelectWall,
                     SteamVR_Actions.esclab_RotateWall,
-                    SteamVR_Actions.esclab_DisplayStats,
-                    SteamVR_Actions.esclab_GrabObject};
+                    SteamVR_Actions.esclab_DisplayStats};
             Valve.VR.SteamVR_Input.actionsSingle = new Valve.VR.SteamVR_Action_Single[] {
                     SteamVR_Actions.default_Squeeze,
                     SteamVR_Actions.buggy_Throttle};
@@ -345,8 +332,7 @@ namespace Valve.VR
                     SteamVR_Actions.buggy_Reset,
                     SteamVR_Actions.esclab_SelectWall,
                     SteamVR_Actions.esclab_RotateWall,
-                    SteamVR_Actions.esclab_DisplayStats,
-                    SteamVR_Actions.esclab_GrabObject};
+                    SteamVR_Actions.esclab_DisplayStats};
         }
         
         private static void PreInitActions()
@@ -373,7 +359,6 @@ namespace Valve.VR
             SteamVR_Actions.p_esclab_SelectWall = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/esclab/in/SelectWall")));
             SteamVR_Actions.p_esclab_RotateWall = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/esclab/in/RotateWall")));
             SteamVR_Actions.p_esclab_DisplayStats = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/esclab/in/DisplayStats")));
-            SteamVR_Actions.p_esclab_GrabObject = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/esclab/in/GrabObject")));
         }
     }
 }

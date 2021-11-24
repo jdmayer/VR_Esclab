@@ -40,13 +40,5 @@ namespace Valve.VR
                 return SteamVR_Actions.esclab_DisplayStats;
             }
         }
-        
-        public virtual SteamVR_Action_Boolean GrabObject
-        {
-            get
-            {
-                return SteamVR_Actions.esclab_GrabObject;
-            }
-        }
     }
 }

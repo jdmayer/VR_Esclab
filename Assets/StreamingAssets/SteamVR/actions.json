@@ -93,10 +93,6 @@
     {
       "name": "/actions/esclab/in/DisplayStats",
       "type": "boolean"
-    },
-    {
-      "name": "/actions/esclab/in/GrabObject",
-      "type": "boolean"
     }
   ],
   "action_sets": [

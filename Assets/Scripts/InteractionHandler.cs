@@ -1,52 +1,17 @@
 using Assets.Scripts;
-using System.Collections;
 using UnityEngine;
-using Valve.VR;
 
 /// <summary>
 /// Author: Janine Mayer
 /// </summary>
 public class InteractionHandler : MonoBehaviour
 {
-    public SteamVR_Action_Boolean Grab;
-    public SteamVR_Input_Sources handType;
-
-    private GameObject currentItem;
-    private FixedJoint attachedJoint = null;
-
-    private void Awake()
-    {
-        attachedJoint = GetComponent<FixedJoint>();
-    }
-
     void Start()
     {
-        Grab.AddOnStateDownListener(GrabObject, handType);
-        Grab.AddOnStateUpListener(ReleaseObject, handType);
     }
 
     void Update()
     {
-    }
-
-    public void GrabObject(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
-    {
-        if (currentItem == null)
-        {
-            return;
-        }
-
-        //var currentItemRigidBody = currentItem.GetComponent<Rigidbody>();
-        //currentItemRigidBody.transform.position = transform.position;
-        //attachedJoint.connectedBody = currentItemRigidBody;
-
-        Debug.Log("Grabbed object");
-    }
-
-    public void ReleaseObject(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
-    {
-        Debug.Log("Released object");
-
     }
 
     public void OnTriggerEnter(Collider collider)
@@ -66,7 +31,8 @@ public class InteractionHandler : MonoBehaviour
         }
         else if (collider.GetComponent<ItemBaseClass>())
         {
-            currentItem = collider.gameObject;            
+            // add coin stuff
+            // probably something else aswell
         }
         else if (collider.GetComponent<Enemy>())
         {
@@ -87,7 +53,7 @@ public class InteractionHandler : MonoBehaviour
     {
         if (collider.GetComponent<ItemBaseClass>())
         {
-            currentItem = null;
+            // check when there is something to do
         }
     }
 
