@@ -21,6 +21,7 @@ namespace Assets.Scripts
         };
 
         public static string ANIMATION_START = "Start";
+        public static string ANIMATION_FADE = "FadeOut";
         public static string ANIMATION_ISHURT = "IsHurt";
 
         public static string MATERIAL_BREAKABLE = "Materials/Breakable";

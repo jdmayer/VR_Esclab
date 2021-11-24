@@ -68,10 +68,11 @@ public class Character : MonoBehaviour
     {
     }
 
+    // TODO after scene chanage probably re-trigger pulsate animation?
     private void CheckHealthCondition(int oldHealth, int newHealth)
     {
         Debug.Log(oldHealth + " => " + newHealth);
-                
+
         if (newHealth <= painLevel)
         {
             if (FieldOfView && oldHealth >= painLevel)

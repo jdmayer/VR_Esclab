@@ -43,7 +43,7 @@ public class Portal : MonoBehaviour
 
     private IEnumerator LoadScene(string newScene)
     {
-        transition.SetTrigger(StringConstants.ANIMATION_START);
+        transition.SetTrigger(StringConstants.ANIMATION_FADE);
 
         yield return new WaitForSeconds(transitionTime);
 
