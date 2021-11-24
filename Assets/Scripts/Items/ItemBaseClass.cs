@@ -14,17 +14,11 @@ public class ItemBaseClass : MonoBehaviour
     protected AudioSource fallSound;
 
 
-    public ItemBaseClass(int minValue, int maxValue) //Implement this in the subclasses!
-    {
-        InstantiateRandomValue(minValue, maxValue);
-    }
-
     // Start is called before the first frame update
     protected virtual void Start()
     {
         weight = Constants.ITEM_WEIGHT;
         isRotating = true;
-
         // value random
     }
 
@@ -70,17 +64,17 @@ public class ItemBaseClass : MonoBehaviour
         return value;
     }
 
-    protected virtual void GotGrabbed() // should be called when grabbed -> Player class
+    public virtual void GotGrabbed() // should be called when grabbed -> Player class
     {
         this.taken = true;
     }
 
-    protected virtual void NourishedPlayer()//Should be called when eaten -> Player class
+    public virtual void NourishedPlayer()//Should be called when eaten -> Player class
     {
         DestroyItem();
     }
 
-    protected virtual void DestroyItem()
+    public virtual void DestroyItem()
     {
         Destroy(this.gameObject);
     }

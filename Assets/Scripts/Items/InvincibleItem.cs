@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class InvincibleItem : ItemBaseClass
 {
-    // Start is called before the first frame update
-    InvincibleItem() : base(Constants.INVINCIBLE_ITEM_VALUE_MIN,Constants.INVINCIBLE_ITEM_VALUE_MAX)
-    {
-      
-    }
 
+    // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        this.value = Constants.HEALTH_VALUE;
+        InstantiateRandomValue(Constants.INVINCIBLE_ITEM_VALUE_MIN, Constants.INVINCIBLE_ITEM_VALUE_MAX);
+        //these numbers specify the duration of invincibility
     }
 
     // Update is called once per frame
@@ -22,13 +19,13 @@ public class InvincibleItem : ItemBaseClass
         base.Update();
     }
 
-    protected override void GotGrabbed()
+    public override void GotGrabbed()
     {
         base.GotGrabbed();//Call the class header
         //TODO Maybe animation?
     }
 
-    protected override void DestroyItem()
+    public override void DestroyItem()
     {
         //TODO maybe fancy shit?
         base.DestroyItem();//calls Destroy()
