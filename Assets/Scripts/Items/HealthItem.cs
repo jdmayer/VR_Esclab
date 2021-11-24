@@ -18,13 +18,13 @@ public class HealthItem : ItemBaseClass
         base.Update();
     }
 
-    void GotGrabbed()
+    public void GotGrabbed()
     {
         base.GotGrabbed();//Call the class header
         //TODO Maybe animation?
     }
 
-    void DestroyItem()
+    private void DestroyItem()
     {
         //TODO maybe fancy shit?
         base.DestroyItem();//calls Destroy()

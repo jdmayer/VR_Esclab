@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class ItemBaseClass : MonoBehaviour
     {
         weight = Constants.ITEM_WEIGHT;
         isRotating = true;
+
+        // value random
     }
 
     // Update is called once per frame
@@ -35,7 +38,7 @@ public class ItemBaseClass : MonoBehaviour
     //EventListener, if collision with ground -> getWeight -> amplitude sound
     protected void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player" || collision.gameObject.name == "Player" || collision.gameObject.name == "player")
+        if (collision.gameObject.name.Contains(StringConstants.HAND_COLLIDER))
         {
             Debug.Log("Debug: Collission with player");//should be removed before production release
         }
@@ -54,6 +57,11 @@ public class ItemBaseClass : MonoBehaviour
         }
     }
 
+    public int GetValue()
+    {
+        return value;
+    }
+
     protected void GotGrabbed() // should be called when grabbed -> Player class
     {
         this.taken = true;
@@ -68,4 +76,15 @@ public class ItemBaseClass : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
+
+    protected void InstantiateRandomValue(int min, int max)
+    {
+        //implement random function
+    }
 }
+
+// TODO COIN CLASS
+// when collect -> animation + sound
+
+// TODO HEALTH CLASS
+// when collect -> animation? + sound
