@@ -10,7 +10,9 @@ public class Character : MonoBehaviour
     public Animator FieldOfView;
     public StatusBar HealthBar;
     public StatusBar CoinBar;
-    public AudioSource heartSound;
+    public AudioSource HeartSound;
+
+    public Camera Camera;
 
     private int currHealth;
     private int maxHealth;
@@ -38,7 +40,9 @@ public class Character : MonoBehaviour
         {
             Debug.Log("Character died");
             StopAllCoroutines();
-            //call game over
+
+            var gameController = GetGameController();
+            gameController.GameOver(Camera.transform);        
         }
     }
 
@@ -90,7 +94,10 @@ public class Character : MonoBehaviour
         if (currCoins == maxCoins)
         {
             Debug.Log("Won the game!");
-            // call win logic
+            StopAllCoroutines();
+
+            var gameController = GetGameController();
+            gameController.GameWon(Camera.transform);
         }
     }
 
@@ -151,13 +158,13 @@ public class Character : MonoBehaviour
                 Debug.Log("Character is in critical condition! " + currHealth + " / " + maxHealth);
 
                 FieldOfView.SetBool(StringConstants.ANIMATION_ISHURT, true);
-                heartSound.Play();
-                heartSound.volume = 0.5f;
+                HeartSound.Play();
+                HeartSound.volume = 0.5f;
             }
 
             if (oldHealth != newHealth)
             {
-                heartSound.volume += oldHealth > newHealth ? 0.2f : -0.1f;
+                HeartSound.volume += oldHealth > newHealth ? 0.2f : -0.1f;
             }
         }
         else if (FieldOfView && oldHealth <= painLevel && newHealth >= painLevel)
@@ -165,7 +172,7 @@ public class Character : MonoBehaviour
             Debug.Log("Character is healed! " + currHealth + " / " + maxHealth);
 
             FieldOfView.SetBool(StringConstants.ANIMATION_ISHURT, false);
-            heartSound.Stop();
+            HeartSound.Stop();
         }
     }
 
@@ -222,6 +229,12 @@ public class Character : MonoBehaviour
         yield return new WaitForSeconds(modeTime);
         Debug.Log("*** Invincibility mode ended ***");
         isInvincible = false;
+    }
+
+    private GameController GetGameController()
+    {
+        var gameControllerObject = GameObject.Find(StringConstants.GAME_CONTROLLER);
+        return gameControllerObject.GetComponent<GameController>();
     }
 
     public void Start()

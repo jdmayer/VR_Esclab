@@ -321,7 +321,8 @@ MonoBehaviour:
   FieldOfView: {fileID: 0}
   HealthBar: {fileID: 7345305109551189436}
   CoinBar: {fileID: 4314643651372433114}
-  heartSound: {fileID: 0}
+  HeartSound: {fileID: 0}
+  Camera: {fileID: 2014920}
 --- !u!1 &109154
 GameObject:
   m_ObjectHideFlags: 0
