@@ -109,7 +109,7 @@ public class Enemy : MonoBehaviour
                             {
                                 Attack();
                                 timer = timer - waitTime;
-                            Debug.Log("Some time has passed");
+                                Debug.Log("Some time has passed");
                             }
                             
                             isAttacking = true;
@@ -124,10 +124,6 @@ public class Enemy : MonoBehaviour
                     {
                         currentAnimation = 1;
                     }
-
-
-                //TODO create pathinding
-                //TODO add animation
                 break;
 
                 //--------------------------------------------------------------------------------------------- IF moveablePlayer GOES OUT OF RANGE
@@ -171,14 +167,14 @@ public class Enemy : MonoBehaviour
     bool decideIfFlying()
     {
 
-        //use random choice here -> if yes, then current Animation = -1; do this only every 20 seconds!
+        //TODO? use random choice here -> if yes, then current Animation = -1; do this only every 20 seconds!
         currentAnimation = -1;
         return true;
     }
 
     bool decideIfSleeping()
     {
-        //use random choice here -> if yes, then current Animatoin = -1
+        //TODO? use random choice here -> if yes, then current Animatoin = -1
         currentAnimation = -1;
         return true;
     }
@@ -196,49 +192,16 @@ public class Enemy : MonoBehaviour
     {
         Vector3 moveablePlayerPosition = moveablePlayer.transform.position;
         Vector3 enemyPosition = this.gameObject.transform.position;
-        //Debug.Log((moveablePlayerPosition - enemyPosition).magnitude);
         return (moveablePlayerPosition-enemyPosition).magnitude;
     }
 
     GameObject FindMoveablePlayer()
     {
-        GameObject moveablePlayer = GameObject.Find("FollowHead");
-
-      //GameObject moveablePlayer = GameObject.Find("moveablePlayer");
-
-        if (moveablePlayer == null)
-        {
-            moveablePlayer = GameObject.Find("followhead");
-        }
-
-        if (moveablePlayer == null)
-        {
-            Debug.LogError("Enemy.cs: Couldn't find moveablePlayer!");
-        }
-
-        return moveablePlayer;
+       return GameController.GetMoveablePlayer();
     }
 
     GameObject FindPlayer()
     {
-        GameObject player = GameObject.Find("Player");
-
-        //GameObject moveablePlayer = GameObject.Find("moveablePlayer");
-
-        if (player == null)
-        {
-            player = GameObject.Find("player");
-        }
-
-        if (player == null)
-        {
-            player = GameObject.FindGameObjectWithTag("Player");
-        }
-        if (player == null)
-        {
-            Debug.LogError("Enemy.cs: Couldn't find player!");
-        }
-
-        return player;
+        return GameController.GetPlayer();
     }
 }

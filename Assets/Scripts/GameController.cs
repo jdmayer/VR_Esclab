@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 
 public class GameController : MonoBehaviour
@@ -49,12 +51,96 @@ public class GameController : MonoBehaviour
     {
         //Play some audio!
         soundtrack.Play();
+        //TODO check in which scene you are and then play soundtrack or other depending on that
     }
 
-    //TODO OnSceneChange Event -> getScene
 
-    //function PlayerDied() get position ->
-        //loadScene -> PlayerDied
-            //Todo (innerhalb Scene -> )
-            //Raum -> Mit Auswahlelementen -> 
+    public void PlayerDied()
+    {
+        Vector3 playerPosition = GetMoveablePlayer().transform.position;
+
+        //TODO load new scene
+
+        //TODO get player and add the position to him/her
+
+        //TODO Player.Reset();
+
+    }
+
+    public void AllCoinsGathered()//TODO this has to be called by the character object
+    {
+        //TODO check if last scene
+        //TODO get all Obstacles objects
+        //TODO create a ground plane below you which will be static and lower everything else -> it will look like you will go higher! -> Text: Congrats on making the game!
+    }
+
+    public static GameObject GetPlayer()
+    {
+        GameObject player = GameObject.Find("Player");
+
+        if (player == null)
+        {
+            player = GameObject.Find("player");
+        }
+
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+        if (player == null)
+        {
+            Debug.LogError("Enemy.cs: Couldn't find player!");
+        }
+
+        return player;
+    }
+
+    public static GameObject GetMoveablePlayer()
+    {
+        GameObject moveablePlayer = GameObject.Find("FollowHead");
+
+        if (moveablePlayer == null)
+        {
+            moveablePlayer = GameObject.Find("followhead");
+        }
+
+        if (moveablePlayer == null)
+        {
+            Debug.LogError("Enemy.cs: Couldn't find moveablePlayer!");
+        }
+
+        return moveablePlayer;
+    }
+
+    public GameObject GetEnemy()
+    {
+        GameObject enemy = GameObject.Find("Enemy");
+
+        if (enemy == null)
+        {
+            enemy = GameObject.Find("enemy");
+        }
+
+        if (enemy == null)
+        {
+            enemy = GameObject.Find("Red");
+        }
+
+
+        if (enemy == null)
+        {
+            enemy = GameObject.Find("AI");
+        }
+
+        if (enemy == null)
+        {
+            enemy = GameObject.FindGameObjectWithTag("Enemy");
+        }
+        if (enemy == null)
+        {
+            Debug.LogError("Enemy.cs: Couldn't find player!");
+        }
+
+        return enemy;
+    }
 }

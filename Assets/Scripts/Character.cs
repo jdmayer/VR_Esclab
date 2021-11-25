@@ -134,6 +134,12 @@ public class Character : MonoBehaviour
         return attackable;
     }
 
+
+    public void setInvincibility(int amountOfTime)
+    {
+        //TODO -> SetInvincibility(amount) -> get this by NourishedPlayer!
+    }
+
     public void Start()
     {
         UpdateValuesWithCharacterStats();

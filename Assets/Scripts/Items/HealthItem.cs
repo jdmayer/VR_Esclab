@@ -17,12 +17,6 @@ public class HealthItem : ItemBaseClass
         base.Update();
     }
 
-    protected override void CollisionWithPlayer(GameObject player)
-    {
-        base.CollisionWithPlayer(player);
-        player.GetComponent<Character>().SetCurrHealth(value);
-    }
-
     public override void GotGrabbed()
     {
         base.GotGrabbed();//Call the class header
