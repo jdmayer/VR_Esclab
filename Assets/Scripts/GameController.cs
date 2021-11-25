@@ -98,11 +98,11 @@ public class GameController : MonoBehaviour
 
     public static GameObject GetMoveablePlayer()
     {
-        GameObject moveablePlayer = GameObject.Find("FollowHead");
+        GameObject moveablePlayer = GameObject.Find(StringConstants.VR_CAMERA);
 
         if (moveablePlayer == null)
         {
-            moveablePlayer = GameObject.Find("followhead");
+            moveablePlayer = GameObject.Find(StringConstants.VR_CAMERA);
         }
 
         if (moveablePlayer == null)
