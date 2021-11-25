@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -76,16 +77,16 @@ public class GameController : MonoBehaviour
 
     public static GameObject GetPlayer()
     {
-        GameObject player = GameObject.Find("Player");
+        GameObject player = GameObject.Find(StringConstants.PLAYER);
 
         if (player == null)
         {
-            player = GameObject.Find("player");
+            player = GameObject.Find(StringConstants.PLAYER);
         }
 
         if (player == null)
         {
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = GameObject.FindGameObjectWithTag(StringConstants.PLAYER);
         }
         if (player == null)
         {

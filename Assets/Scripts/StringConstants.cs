@@ -7,7 +7,7 @@ namespace Assets.Scripts
     public static class StringConstants
     {
         //gameobjects
-        public static string PLAYER = "Player";
+        public static string PLAYER = "SteamVR_Player";
         public static string HAND_COLLIDER = "HandCollider";
         public static string VIVE_CHARACTER = "HeadCollider";
         public static string MANUAL_PLAYER = "ManualPlayer";
@@ -23,8 +23,8 @@ namespace Assets.Scripts
         public static string INVINCIBILITY_MODE = "InvincibilityMode";
 
         public static string[] LABYRINTH_SCENES = { 
-            "Labyrinth_A", 
-            "Labyrinth_B" 
+            "Level_1", 
+            "Level_2" 
         };
 
         public static string ANIMATION_START = "Start";
