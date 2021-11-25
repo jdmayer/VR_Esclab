@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.219, y: -0.2669983}
+  m_AnchoredPosition: {x: -0.219, y: 0}
   m_SizeDelta: {x: 3, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9165348092699305654
@@ -482,7 +482,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.003, y: -0.2669983}
+  m_AnchoredPosition: {x: 0.003, y: 0}
   m_SizeDelta: {x: 1, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &866237750387376504
@@ -1107,10 +1107,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bar: {fileID: 5365046797287771218}
   Camera: {fileID: 0}
+  CurrText: {fileID: 1373489932240251340}
+  MaxText: {fileID: 2688716771662510453}
   Display:
     actionPath: /actions/esclab/in/DisplayStats
     needsReinit: 0
-  handType: 1
+  HandType: 1
 --- !u!114 &5365046797287771218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1245,7 +1247,7 @@ RectTransform:
   m_GameObject: {fileID: 5365046797477048347}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8014931784377403616}
@@ -1405,7 +1407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6673394798653388422}
   - component: {fileID: 8717650186283178132}
-  - component: {fileID: 4353314027456466310}
+  - component: {fileID: 1475786759201947445}
   - component: {fileID: 2889308157852114329}
   m_Layer: 5
   m_Name: Coinbar
@@ -1442,7 +1444,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6466685602719446836}
   m_CullTransparentMesh: 0
---- !u!114 &4353314027456466310
+--- !u!114 &1475786759201947445
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1456,10 +1458,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bar: {fileID: 2889308157852114329}
   Camera: {fileID: 0}
+  CurrText: {fileID: 6493746984595738494}
+  MaxText: {fileID: 8429348020842124010}
   Display:
     actionPath: /actions/esclab/in/DisplayStats
     needsReinit: 0
-  handType: 1
+  HandType: 1
 --- !u!114 &2889308157852114329
 MonoBehaviour:
   m_ObjectHideFlags: 0

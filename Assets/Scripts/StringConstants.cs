@@ -13,6 +13,9 @@ namespace Assets.Scripts
         public static string MANUAL_PLAYER = "ManualPlayer";
         public static string BREAKABLE_WALL = "Breakable Wall";
 
+        public static string TEXT_CURRVAL = "CurrValue";
+        public static string TEXT_MAXVAL = "MaxValue";
+
         //coroutine
         public static string MOVE_WALL = "MoveWall";
 
