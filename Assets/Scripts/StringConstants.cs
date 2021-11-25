@@ -18,6 +18,7 @@ namespace Assets.Scripts
 
         //coroutine
         public static string MOVE_WALL = "MoveWall";
+        public static string INVINCIBILITY_MODE = "InvincibilityMode";
 
         public static string[] LABYRINTH_SCENES = { 
             "Labyrinth_A", 

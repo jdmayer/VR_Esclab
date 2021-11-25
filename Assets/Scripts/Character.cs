@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -18,7 +19,7 @@ public class Character : MonoBehaviour
     private int currCoins;
     private int maxCoins;
 
-    private bool isAttackable;
+    private bool isInvincible;
 
 #region Getter and Setter
     public void SetCurrHealth(int newCurrHealth)
@@ -124,7 +125,7 @@ public class Character : MonoBehaviour
         this.SetMaxCoins(maxCoins);
         this.SetCurrCoins(0);
 
-        this.isAttackable = true;
+        this.isInvincible = false;
     }
 
     public Character() : this(100, 20)
@@ -135,7 +136,7 @@ public class Character : MonoBehaviour
     {
         SetCurrCoins(0);
         SetCurrHealth(this.maxHealth);
-        this.isAttackable = true;
+        this.isInvincible = true;
 
         SetCharacterStats();
     }
@@ -203,15 +204,24 @@ public class Character : MonoBehaviour
         //change health
     }
 
-    //what does this do?
-    public bool IsAttackable()
+    public bool IsInvincible()
     {
-        return isAttackable;
+        return isInvincible;
     }
 
-    public void SetInvincibility(int amountOfTime)
-    {//should be a coroutine!
-        //TODO -> SetInvincibility(amount) -> get this by NourishedPlayer!
+    public void SetInvincibility(int modeTime)
+    {
+        isInvincible = true;
+
+        StartCoroutine(StringConstants.INVINCIBILITY_MODE, modeTime);
+    }
+
+    private IEnumerator InvincibilityMode(int modeTime)
+    {
+        Debug.Log("*** Invincibility mode started ***");
+        yield return new WaitForSeconds(modeTime);
+        Debug.Log("*** Invincibility mode ended ***");
+        isInvincible = false;
     }
 
     public void Start()
