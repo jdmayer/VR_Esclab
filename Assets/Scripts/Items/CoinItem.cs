@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Author: Axel Bauer
+/// </summary>
 public class CoinItem : ItemBaseClass
 {
     // Start is called before the first frame update
@@ -22,6 +25,9 @@ public class CoinItem : ItemBaseClass
     {
         base.GotGrabbed();//Call the class header
         //TODO Maybe animation?
+
+        //call player script
+        //player.changecurrcoin(value);
     }
 
     protected override void DestroyItem()
