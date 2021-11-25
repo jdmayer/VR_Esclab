@@ -42,7 +42,7 @@ public class Character : MonoBehaviour
             StopAllCoroutines();
 
             var gameController = GetGameController();
-            gameController.GameOver(Camera.transform);        
+            gameController?.GameOver(Camera.transform);        
         }
     }
 
@@ -97,7 +97,7 @@ public class Character : MonoBehaviour
             StopAllCoroutines();
 
             var gameController = GetGameController();
-            gameController.GameWon(Camera.transform);
+            gameController?.GameWon(Camera.transform);
         }
     }
 
@@ -234,7 +234,7 @@ public class Character : MonoBehaviour
     private GameController GetGameController()
     {
         var gameControllerObject = GameObject.Find(StringConstants.GAME_CONTROLLER);
-        return gameControllerObject.GetComponent<GameController>();
+        return gameControllerObject ? gameControllerObject.GetComponent<GameController>() : null;
     }
 
     public void Start()
@@ -242,7 +242,7 @@ public class Character : MonoBehaviour
         UpdateValuesWithCharacterStats();
     }
 
-    //for testing
+    //Test status update and reaction
     private void Update()
     {
         if (Input.GetKey(KeyCode.J))
@@ -252,6 +252,14 @@ public class Character : MonoBehaviour
         else if (Input.GetKey(KeyCode.K))
         {
             ChangeCurrHealth(5);
+        }
+        else if (Input.GetKey(KeyCode.I))
+        {
+            ChangeCurrCoins(2);
+        }
+        else if (Input.GetKey(KeyCode.U))
+        {
+            ChangeCurrCoins(-2);
         }
     }
 }
