@@ -7,4 +7,6 @@ public static class CharacterStats
     public const string MaxHealth = "MaxHealth";
     public const string CurrHealth = "CurrHealth";
     public const string PainLevel = "PainLevel";
+    public const string MaxCoins = "MaxCoins";
+    public const string CurrCoins = "CurrCoins";
 }

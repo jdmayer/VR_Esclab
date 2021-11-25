@@ -12,9 +12,15 @@ namespace Assets.Scripts
         public static string VIVE_CHARACTER = "HeadCollider";
         public static string MANUAL_PLAYER = "ManualPlayer";
         public static string BREAKABLE_WALL = "Breakable Wall";
+        public static string GAME_CONTROLLER = "GameController";
+        public static string VR_CAMERA = "VRCamera";
+
+        public static string TEXT_CURRVAL = "CurrValue";
+        public static string TEXT_MAXVAL = "MaxValue";
 
         //coroutine
         public static string MOVE_WALL = "MoveWall";
+        public static string INVINCIBILITY_MODE = "InvincibilityMode";
 
         public static string[] LABYRINTH_SCENES = { 
             "Labyrinth_A", 

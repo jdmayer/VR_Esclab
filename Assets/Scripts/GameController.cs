@@ -55,9 +55,9 @@ public class GameController : MonoBehaviour
     }
 
 
-    public void PlayerDied()
+    public void GameOver(Transform playerPosition) //passed transform for rotation as well as position
     {
-        Vector3 playerPosition = GetMoveablePlayer().transform.position;
+        ///*Vector3*/ playerPosition = GetMoveablePlayer().transform.position;
 
         //TODO load new scene
 
@@ -67,7 +67,7 @@ public class GameController : MonoBehaviour
 
     }
 
-    public void AllCoinsGathered()//TODO this has to be called by the character object
+    public void GameWon(Transform playerPosition) //passed transform for rotation as well as position 
     {
         //TODO check if last scene
         //TODO get all Obstacles objects

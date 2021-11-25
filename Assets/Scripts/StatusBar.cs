@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 using Valve.VR;
 
@@ -11,15 +12,18 @@ public class StatusBar : MonoBehaviour
     public Image Bar;
     public Camera Camera;
 
+    public TextMeshProUGUI CurrText;
+    public TextMeshProUGUI MaxText;
+
     public SteamVR_Action_Boolean Display;
-    public SteamVR_Input_Sources handType;
+    public SteamVR_Input_Sources HandType;
 
     private Canvas parentCanvas;
 
     void Start()
     {
-        Display.AddOnStateDownListener(DisplayStatsBar, handType);
-        Display.AddOnStateUpListener(HideStatsBar, handType);
+        Display.AddOnStateDownListener(DisplayStatsBar, HandType);
+        Display.AddOnStateUpListener(HideStatsBar, HandType);
 
         parentCanvas = gameObject.GetComponentInParent<Canvas>();
         parentCanvas.enabled = false;
@@ -40,8 +44,10 @@ public class StatusBar : MonoBehaviour
         parentCanvas.enabled = false;
     }
 
-    public void UpdateStatBar(float fraction)
+    public void UpdateStatBar(float fraction, int currValue, int maxValue)
     {
         Bar.fillAmount = fraction;
+        CurrText.text = currValue.ToString();
+        MaxText.text = maxValue.ToString();
     }
 }
