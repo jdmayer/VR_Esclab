@@ -30,6 +30,20 @@ public class CoinItem : ItemBaseClass
         //player.changecurrcoin(value);
     }
 
+    public override int NourishedPlayer()
+    {
+        
+        Character character = GameController.GetPlayer().GetComponent<Character>();
+        if (character == null)
+        {
+            Debug.LogError("CoinItem.cs: No character found!");
+        } else
+        {
+            character.ChangeCurrCoins(value);
+        }
+        return base.NourishedPlayer();
+    }
+
     protected override void DestroyItem()
     {
         //TODO maybe fancy shit?

@@ -2,6 +2,7 @@ using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 /**
  * Author: Axel Bauer
@@ -14,7 +15,8 @@ public class ItemBaseClass : MonoBehaviour
 
     protected bool taken;
     protected bool isRotating;
-    
+    protected Interactable interactable;
+
     public AudioSource fallSound;
 
     // Start is called before the first frame update
@@ -22,7 +24,17 @@ public class ItemBaseClass : MonoBehaviour
     {
         weight = Constants.ITEM_WEIGHT;
         isRotating = true;
-        // value random
+        this.gameObject.AddComponent<Rigidbody>();
+        this.gameObject.GetComponent<Rigidbody>().mass = weight;
+        this.gameObject.GetComponent<Rigidbody>().useGravity = false;
+
+        this.gameObject.AddComponent<VelocityEstimator>();
+        this.gameObject.AddComponent<Interactable>();
+        this.gameObject.AddComponent<ComplexThrowable>();
+
+        interactable = this.gameObject.GetComponent<Interactable>();
+        interactable.hideHandOnAttach = false;
+        interactable.handFollowTransform = false;
     }
 
     // Update is called once per frame
@@ -33,10 +45,14 @@ public class ItemBaseClass : MonoBehaviour
             this.gameObject.transform.Rotate(new Vector3(0, Constants.ITEM_ROTATION_SPEED, 0.0f));
         }
 
-        if (taken && this.gameObject.GetComponent<Rigidbody>() == null)
+        if (taken && this.gameObject.GetComponent<Rigidbody>().useGravity == false)
         {
-            this.gameObject.AddComponent<Rigidbody>();
-            this.gameObject.GetComponent<Rigidbody>().mass = weight;
+            this.gameObject.GetComponent<Rigidbody>().useGravity = true;
+        }
+
+        if (interactable != null && interactable.attachedToHand != null)
+        {
+            GotGrabbed();
         }
     }
 
