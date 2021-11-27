@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour
         //Intentionally left empty
         gameEnd = false;
         showGameEndText = true;
-        GameWon();//TODO delete this
+        //GameWon();//TODO delete this
     }
 
     void Update()
