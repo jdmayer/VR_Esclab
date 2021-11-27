@@ -159,11 +159,11 @@ public class Enemy : MonoBehaviour
             }
 
 
-        Debug.Log("currentAnimation" + currentAnimation);
+        /*Debug.Log("currentAnimation" + currentAnimation);
         Debug.Log("distance to moveablePlayer" + GetDistanceTomoveablePlayer());
         Debug.Log("isFlying: " + isFlying);
         Debug.Log("isSleeping: " + isAsleep);
-        Debug.Log("isAttacking: " + isAttacking);
+        Debug.Log("isAttacking: " + isAttacking);*/
     }
 
     bool decideIfFlying()

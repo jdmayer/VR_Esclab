@@ -17,6 +17,7 @@ public class ItemBaseClass : MonoBehaviour
     protected bool isRotating;
     protected Interactable interactable;
 
+    public GameObject fireObject;
     public AudioSource fallSound;
 
     // Start is called before the first frame update
@@ -97,6 +98,9 @@ public class ItemBaseClass : MonoBehaviour
     public virtual void GotGrabbed() // should be called when grabbed -> Player class
     {
         this.taken = true;
+
+
+        NourishedPlayer();//Todo if possible change this to assert 
     }
 
     public virtual int NourishedPlayer()//Should be called when eaten -> Player class
@@ -107,6 +111,7 @@ public class ItemBaseClass : MonoBehaviour
 
     protected virtual void DestroyItem()
     {
+        Instantiate(fireObject, this.transform.position, this.transform.rotation);
         Destroy(this.gameObject);
     }
 

@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,9 +19,16 @@ public class StartGameTrigger : MonoBehaviour
 
     protected void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name.Contains("HandCollider"))
+        if (collision.gameObject.name.Contains(StringConstants.HAND_COLLIDER))
         {
-            //LoadFirstScene
+            GameController gc = GameObject.Find(StringConstants.GAME_CONTROLLER).GetComponent<GameController>();
+            if (gc == null)
+            {
+                Debug.LogError("StartGameTrigger.cs: Couldn't find GameController!");
+            } else
+            {
+                gc.GameStart();
+            }
         }
     }
 }

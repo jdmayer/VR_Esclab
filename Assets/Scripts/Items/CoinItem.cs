@@ -25,9 +25,6 @@ public class CoinItem : ItemBaseClass
     {
         base.GotGrabbed();//Call the class header
         //TODO Maybe animation?
-
-        //call player script
-        //player.changecurrcoin(value);
     }
 
     public override int NourishedPlayer()

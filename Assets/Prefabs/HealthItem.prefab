@@ -5103,6 +5103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0edf5f42a22514a4d8b248279cf4282b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireObject: {fileID: 1654736843778140, guid: 191f3da4953f53b45910ba9de9dd2cf2, type: 3}
   fallSound: {fileID: 0}
 --- !u!1 &1994573436924961054
 GameObject:

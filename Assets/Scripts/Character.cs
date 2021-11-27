@@ -42,7 +42,7 @@ public class Character : MonoBehaviour
             StopAllCoroutines();
 
             var gameController = GetGameController();
-            gameController?.GameOver(Camera.transform);        
+            gameController?.GameOver();        
         }
     }
 
@@ -97,7 +97,7 @@ public class Character : MonoBehaviour
             StopAllCoroutines();
 
             var gameController = GetGameController();
-            gameController?.GameWon(Camera.transform);
+            gameController?.GameWon();
         }
     }
 
