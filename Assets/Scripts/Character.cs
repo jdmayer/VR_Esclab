@@ -135,7 +135,7 @@ public class Character : MonoBehaviour
         this.isInvincible = false;
     }
 
-    public Character() : this(100, 20)
+    public Character() : this(100, 10)
     {
     }
 
@@ -201,8 +201,8 @@ public class Character : MonoBehaviour
         SetMaxHealth(savedMaxHealth);
         SetCurrHealth(PlayerPrefs.GetInt(CharacterStats.CurrHealth));
         SetPainLevel(PlayerPrefs.GetInt(CharacterStats.PainLevel));
-        SetPainLevel(PlayerPrefs.GetInt(CharacterStats.MaxCoins));
-        SetPainLevel(PlayerPrefs.GetInt(CharacterStats.CurrCoins));
+        SetMaxCoins(PlayerPrefs.GetInt(CharacterStats.MaxCoins));
+        SetCurrCoins(PlayerPrefs.GetInt(CharacterStats.CurrCoins));
     }
 
     public void GetsAttacked(int strength)
@@ -247,19 +247,24 @@ public class Character : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.J))
         {
-            ChangeCurrHealth(-5);
+            ChangeCurrHealth(-1);
         }
         else if (Input.GetKey(KeyCode.K))
         {
-            ChangeCurrHealth(5);
+            ChangeCurrHealth(1);
         }
         else if (Input.GetKey(KeyCode.I))
         {
-            ChangeCurrCoins(2);
+            ChangeCurrCoins(1);
         }
         else if (Input.GetKey(KeyCode.U))
         {
-            ChangeCurrCoins(-2);
+            ChangeCurrCoins(-1);
+        }
+        else if (Input.GetKey(KeyCode.O))
+        {
+            Debug.Log("Health: " + currHealth + " / " + maxHealth);
+            Debug.Log("Coins: " + currCoins + " / " + maxCoins);
         }
     }
 }
