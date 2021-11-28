@@ -20,6 +20,14 @@ public class Portal : MonoBehaviour
     public Animator transition;
     public float transitionTime = 1;
 
+    private ParticleSystem portalParticles = null;
+
+    private void Start()
+    {
+        portalParticles = gameObject.GetComponentInChildren<ParticleSystem>();
+        portalParticles.Play();
+    }
+
     void OnTriggerEnter(Collider collision)
     {
         if (collision.name == StringConstants.VIVE_CHARACTER || collision.name == StringConstants.MANUAL_PLAYER)
