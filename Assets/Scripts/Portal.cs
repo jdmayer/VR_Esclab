@@ -11,6 +11,7 @@ using UnityEngine.SceneManagement;
 /// Player needs to possess a Rigidbody component to trigger method
 /// Scenes need to be added to the Build Settings so the SceneManager can load them
 /// Tutorial for Fade in/out animation https://www.youtube.com/watch?v=CE9VOZivb3I
+/// Tutorial for portal styling https://www.youtube.com/watch?v=_qj-chjOBXc
 /// </summary>
 public class Portal : MonoBehaviour
 {
@@ -18,6 +19,14 @@ public class Portal : MonoBehaviour
 
     public Animator transition;
     public float transitionTime = 1;
+
+    private ParticleSystem portalParticles = null;
+
+    private void Start()
+    {
+        portalParticles = gameObject.GetComponentInChildren<ParticleSystem>();
+        portalParticles.Play();
+    }
 
     void OnTriggerEnter(Collider collision)
     {
@@ -43,12 +52,7 @@ public class Portal : MonoBehaviour
 
     private IEnumerator LoadScene(string newScene)
     {
-        //transition.SetTrigger(StringConstants.ANIMATION_FADE);
-        var playerGameObject = GameObject.Find(StringConstants.PLAYER);
-        if (playerGameObject)
-        {
-            //todo -  
-        }
+        transition.SetTrigger(StringConstants.ANIMATION_FADE);
         yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(newScene);

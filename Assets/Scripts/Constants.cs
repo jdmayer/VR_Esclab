@@ -18,6 +18,6 @@ public static class Constants
     public const int COIN_ITEM_VALUE_MAX = 5;
 
     public const float ENEMY_MASS = 5.0f;
-    public const int DISTANCE_TO_ENEMY_UNTIL_MOVE = 10;
-    public const int ATTACKING_DISTANCE = 7;
+    public const int DISTANCE_TO_ENEMY_UNTIL_MOVE = 4;
+    public const int ATTACKING_DISTANCE = 2;
 }

@@ -23,6 +23,9 @@ public class Character : MonoBehaviour
 
     private bool isInvincible;
 
+    private float nextRecharge = 0.0f;
+    private float rechargeTime = 10.0f;
+
 #region Getter and Setter
     public void SetCurrHealth(int newCurrHealth)
     {
@@ -135,7 +138,7 @@ public class Character : MonoBehaviour
         this.isInvincible = false;
     }
 
-    public Character() : this(100, 20)
+    public Character() : this(100, 10)
     {
     }
 
@@ -148,7 +151,6 @@ public class Character : MonoBehaviour
         SetCharacterStats();
     }
 
-    // TODO after scene chanage probably re-trigger pulsate animation?
     private void CheckHealthCondition(int oldHealth, int newHealth)
     {
         if (newHealth <= painLevel)
@@ -201,8 +203,8 @@ public class Character : MonoBehaviour
         SetMaxHealth(savedMaxHealth);
         SetCurrHealth(PlayerPrefs.GetInt(CharacterStats.CurrHealth));
         SetPainLevel(PlayerPrefs.GetInt(CharacterStats.PainLevel));
-        SetPainLevel(PlayerPrefs.GetInt(CharacterStats.MaxCoins));
-        SetPainLevel(PlayerPrefs.GetInt(CharacterStats.CurrCoins));
+        SetMaxCoins(PlayerPrefs.GetInt(CharacterStats.MaxCoins));
+        SetCurrCoins(PlayerPrefs.GetInt(CharacterStats.CurrCoins));
     }
 
     public void GetsAttacked(int strength)
@@ -237,9 +239,26 @@ public class Character : MonoBehaviour
         return gameControllerObject ? gameControllerObject.GetComponent<GameController>() : null;
     }
 
+    private IEnumerator UpdateHealth()
+    {
+        while (true)
+        {
+            nextRecharge -= Time.deltaTime;
+
+            if (nextRecharge < 0)
+            {
+                ChangeCurrHealth(2);
+                nextRecharge = rechargeTime;
+            }
+
+            yield return null;
+        }
+    }
+
     public void Start()
     {
         UpdateValuesWithCharacterStats();
+        StartCoroutine(StringConstants.UPDATE_HEALTH);
     }
 
     //Test status update and reaction
@@ -247,19 +266,24 @@ public class Character : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.J))
         {
-            ChangeCurrHealth(-5);
+            ChangeCurrHealth(-1);
         }
         else if (Input.GetKey(KeyCode.K))
         {
-            ChangeCurrHealth(5);
+            ChangeCurrHealth(1);
         }
         else if (Input.GetKey(KeyCode.I))
         {
-            ChangeCurrCoins(2);
+            ChangeCurrCoins(1);
         }
         else if (Input.GetKey(KeyCode.U))
         {
-            ChangeCurrCoins(-2);
+            ChangeCurrCoins(-1);
+        }
+        else if (Input.GetKey(KeyCode.O))
+        {
+            Debug.Log("Health: " + currHealth + " / " + maxHealth);
+            Debug.Log("Coins: " + currCoins + " / " + maxCoins);
         }
     }
 }
