@@ -27,12 +27,18 @@ public class StatusbarPositioning : MonoBehaviour
 
     void Update()
     {
-        gameObject.transform.position = new Vector3(
-            leftController.transform.position.x + 0.5f, 
-            leftController.transform.position.y + 0.5f, 
-            leftController.transform.position.z);
+        if (leftController)
+        {
+            gameObject.transform.position = new Vector3(
+                leftController.transform.position.x + 0.5f,
+                leftController.transform.position.y + 0.5f,
+                leftController.transform.position.z);
+        }
 
-        gameObject.transform.LookAt(Camera.transform);  
+        if (Camera)
+        {
+            gameObject.transform.LookAt(Camera.transform);  
+        }
     }
 
 
