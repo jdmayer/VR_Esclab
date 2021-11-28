@@ -11,6 +11,7 @@ using UnityEngine.SceneManagement;
 /// Player needs to possess a Rigidbody component to trigger method
 /// Scenes need to be added to the Build Settings so the SceneManager can load them
 /// Tutorial for Fade in/out animation https://www.youtube.com/watch?v=CE9VOZivb3I
+/// Tutorial for portal styling https://www.youtube.com/watch?v=_qj-chjOBXc
 /// </summary>
 public class Portal : MonoBehaviour
 {
