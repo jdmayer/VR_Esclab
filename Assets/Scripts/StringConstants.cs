@@ -21,10 +21,11 @@ namespace Assets.Scripts
         //coroutine
         public static string MOVE_WALL = "MoveWall";
         public static string INVINCIBILITY_MODE = "InvincibilityMode";
+        public static string UPDATE_HEALTH = "UpdateHealth";
 
-        public static string[] LABYRINTH_SCENES = { 
-            "Level_1", 
-            "Level_2" 
+        public static string[] LABYRINTH_SCENES = {
+            "Level_1",
+            "Level_2"
         };
 
         public static string ANIMATION_START = "Start";
