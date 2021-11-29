@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.219, y: 0}
+  m_AnchoredPosition: {x: 0.22, y: 0}
   m_SizeDelta: {x: 3, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9165348092699305654
@@ -444,7 +444,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.267}
+  m_AnchoredPosition: {x: 0, y: -0.084}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3699611007735865998
@@ -693,7 +693,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.22, y: 0}
+  m_AnchoredPosition: {x: -0.22, y: 0}
   m_SizeDelta: {x: 3, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2153009338672982923
@@ -832,7 +832,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.423}
+  m_AnchoredPosition: {x: 0, y: 0.243}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4834503481428373454
@@ -946,7 +946,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.22, y: 0}
+  m_AnchoredPosition: {x: -0.22, y: 0}
   m_SizeDelta: {x: 3, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1600113382069163883
@@ -1106,13 +1106,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bar: {fileID: 5365046797287771218}
-  Camera: {fileID: 0}
   CurrText: {fileID: 1373489932240251340}
   MaxText: {fileID: 2688716771662510453}
-  Display:
-    actionPath: /actions/esclab/in/DisplayStats
-    needsReinit: 0
-  HandType: 1
 --- !u!114 &5365046797287771218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1231,6 +1226,7 @@ GameObject:
   - component: {fileID: 5365046797477048350}
   - component: {fileID: 5365046797477048349}
   - component: {fileID: 5365046797477048348}
+  - component: {fileID: 4234722671367431771}
   m_Layer: 5
   m_Name: StatsBar
   m_TagString: Untagged
@@ -1321,6 +1317,24 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4234722671367431771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5365046797477048347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35e054cdedf9e04cbb16459a407ddc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Camera: {fileID: 0}
+  Display:
+    actionPath: /actions/esclab/in/DisplayStats
+    needsReinit: 0
+  HandType: 1
+  leftController: {fileID: 0}
 --- !u!1 &5365046798032671298
 GameObject:
   m_ObjectHideFlags: 0
@@ -1457,13 +1471,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bar: {fileID: 2889308157852114329}
-  Camera: {fileID: 0}
   CurrText: {fileID: 6493746984595738494}
   MaxText: {fileID: 8429348020842124010}
-  Display:
-    actionPath: /actions/esclab/in/DisplayStats
-    needsReinit: 0
-  HandType: 1
 --- !u!114 &2889308157852114329
 MonoBehaviour:
   m_ObjectHideFlags: 0

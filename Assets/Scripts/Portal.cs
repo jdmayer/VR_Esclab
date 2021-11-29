@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts;
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,13 +10,29 @@ using UnityEngine.SceneManagement;
 /// Player needs to possess a Rigidbody component to trigger method
 /// Scenes need to be added to the Build Settings so the SceneManager can load them
 /// Tutorial for Fade in/out animation https://www.youtube.com/watch?v=CE9VOZivb3I
+/// Tutorial for portal styling https://www.youtube.com/watch?v=_qj-chjOBXc
 /// </summary>
 public class Portal : MonoBehaviour
 {
     public Character character;
 
-    public Animator transition;
+    private Animator transition;
     public float transitionTime = 1;
+
+    public Canvas canvas;
+    private GameObject blackImage;
+
+    private ParticleSystem portalParticles = null;
+
+    private void Start()
+    {
+        portalParticles = gameObject.GetComponentInChildren<ParticleSystem>();
+        portalParticles.Play();
+
+        transition = canvas.GetComponent<Animator>();
+        blackImage = canvas.transform.Find("Black").gameObject;
+        blackImage.SetActive(false);
+    }
 
     void OnTriggerEnter(Collider collision)
     {
@@ -38,18 +53,9 @@ public class Portal : MonoBehaviour
         var newScene = StringConstants.LABYRINTH_SCENES[newSceneIndex];
 
         Debug.Log("Portal entered, move from " + currentScene + " to " + newScene);
-        StartCoroutine(LoadScene(newScene));
-    }
 
-    private IEnumerator LoadScene(string newScene)
-    {
-        //transition.SetTrigger(StringConstants.ANIMATION_FADE);
-        var playerGameObject = GameObject.Find(StringConstants.PLAYER);
-        if (playerGameObject)
-        {
-            //todo -  
-        }
-        yield return new WaitForSeconds(transitionTime);
+        blackImage.SetActive(true);
+        transition.SetTrigger(StringConstants.ANIMATION_FADE);
 
         SceneManager.LoadScene(newScene);
     }
