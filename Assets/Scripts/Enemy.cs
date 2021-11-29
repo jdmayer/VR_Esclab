@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Pathfinding;
 using UnityEngine;
-using Pathfinding;
-using static Character;
 
 public class Enemy : MonoBehaviour
 {
@@ -206,10 +203,14 @@ public class Enemy : MonoBehaviour
 
     void Attack()
     {
+        if (!characterComponent)
+        {
+            return;
+        }
         //Get Health Params of moveablePlayer here and reduce it!
         if (!characterComponent.IsInvincible())
         {
-            characterComponent.ChangeCurrHealth(Random.Range(Constants.HEALTH_DAMAGE_APRX-3, Constants.HEALTH_DAMAGE_APRX + 3));
+            characterComponent.ChangeCurrHealth(-Random.Range(Constants.HEALTH_DAMAGE_APRX-3, Constants.HEALTH_DAMAGE_APRX + 3));
         }
     }
 
@@ -224,8 +225,7 @@ public class Enemy : MonoBehaviour
 
     GameObject FindMoveablePlayer()
     {
-       GameObject player = GameController.GetMoveablePlayer();
-        return player;
+        return GameController.GetMoveablePlayer();
     }
 
     GameObject FindPlayer()
