@@ -24,7 +24,7 @@ public class Character : MonoBehaviour
     private bool isInvincible;
 
     private float nextRecharge = 0.0f;
-    private float rechargeTime = 10.0f;
+    private float rechargeTime = 1000.0f;
 
 #region Getter and Setter
     public void SetCurrHealth(int newCurrHealth)
@@ -247,7 +247,7 @@ public class Character : MonoBehaviour
 
             if (nextRecharge < 0)
             {
-                ChangeCurrHealth(2);
+                ChangeCurrHealth(1);
                 nextRecharge = rechargeTime;
             }
 
