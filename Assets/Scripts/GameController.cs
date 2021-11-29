@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour
         gameEnd = false;
         showGameEndText = true;
         //GameWon();//TODO delete this
+        Play();
     }
 
     void Update()
@@ -90,8 +91,15 @@ public class GameController : MonoBehaviour
     public void Play()
     {
         //Play some audio!
-        soundtrack.Play();
-        soundeffects.Play();
+        if (soundtrack != null)
+        {
+            soundtrack.Play();
+        }
+
+        if (soundeffects != null) 
+        {
+            soundeffects.Play();
+        }
         //TODO check in which scene you are and then play soundtrack or other depending on that
     }
 

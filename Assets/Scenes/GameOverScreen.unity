@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundtrack: {fileID: 1124373689}
-  startingAndGameOverSound: {fileID: 0}
+  soundeffects: {fileID: 0}
   firework: {fileID: 0}
   endText: {fileID: 0}
 --- !u!1 &794076317
@@ -199,7 +199,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5af6dfc1259b6f94a9e08cd46100f164, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
