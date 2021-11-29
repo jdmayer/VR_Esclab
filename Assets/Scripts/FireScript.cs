@@ -3,10 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Author: Axel Bauer
+/// </summary>
 public class FireScript : MonoBehaviour
 {
 
     public AudioSource nourshingSound;
+    private float runtime = 5.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -18,17 +22,13 @@ public class FireScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Color objectColor = this.gameObject.GetComponent<MeshRenderer>().material.color;
-        if (objectColor.a > 0)
+        var particleSystem = this.gameObject.GetComponent<ParticleSystem>();
+        runtime -= Time.deltaTime;
+
+        if (runtime < 0)
         {
-            objectColor.a -= Time.deltaTime * Constants.OPACITY_SPEED_FIRE;
-            this.gameObject.GetComponent<MeshRenderer>().material.color = objectColor;
-        } else
-        {
+            particleSystem.Stop();
             Destroy(this.gameObject);
         }
-
     }
-
-
 }
