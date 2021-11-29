@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts;
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,8 +16,11 @@ public class Portal : MonoBehaviour
 {
     public Character character;
 
-    public Animator transition;
+    private Animator transition;
     public float transitionTime = 1;
+
+    public Canvas canvas;
+    private GameObject blackImage;
 
     private ParticleSystem portalParticles = null;
 
@@ -26,6 +28,10 @@ public class Portal : MonoBehaviour
     {
         portalParticles = gameObject.GetComponentInChildren<ParticleSystem>();
         portalParticles.Play();
+
+        transition = canvas.GetComponent<Animator>();
+        blackImage = canvas.transform.Find("Black").gameObject;
+        blackImage.SetActive(false);
     }
 
     void OnTriggerEnter(Collider collision)
@@ -47,13 +53,9 @@ public class Portal : MonoBehaviour
         var newScene = StringConstants.LABYRINTH_SCENES[newSceneIndex];
 
         Debug.Log("Portal entered, move from " + currentScene + " to " + newScene);
-        StartCoroutine(LoadScene(newScene));
-    }
 
-    private IEnumerator LoadScene(string newScene)
-    {
+        blackImage.SetActive(true);
         transition.SetTrigger(StringConstants.ANIMATION_FADE);
-        yield return new WaitForSeconds(transitionTime);
 
         SceneManager.LoadScene(newScene);
     }
