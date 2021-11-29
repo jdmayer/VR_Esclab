@@ -21,6 +21,23 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        var currentScene = SceneManager.GetActiveScene().name;
+        var isPlayableScene = false;
+
+        foreach(var scene in StringConstants.LABYRINTH_SCENES)
+        {
+            if (scene == currentScene)
+            {
+                isPlayableScene = true;
+            }
+        }
+
+        if (isPlayableScene)
+        {
+            GameObject player = GetPlayer();
+            player.GetComponent<Character>().ResetCharacter();
+        }
+
         //Intentionally left empty
         gameEnd = false;
         showGameEndText = true;
@@ -106,15 +123,12 @@ public class GameController : MonoBehaviour
 
     public void GameStart()
     {
-        SceneManager.LoadScene("GameOverScreen");
-
-        GameObject player = GetPlayer();
-        player.GetComponent<Character>().ResetCharacter();
+        SceneManager.LoadScene(StringConstants.LABYRINTH_SCENES[0]);
     }
 
     public void GameOver()
     {
-        SceneManager.LoadScene("GameOverScreen");
+        SceneManager.LoadScene(StringConstants.GAME_OVER_SCENE);
 
         GameObject player = GetPlayer();
         player.GetComponent<Character>().ResetCharacter();
