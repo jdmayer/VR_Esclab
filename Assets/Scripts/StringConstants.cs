@@ -19,6 +19,9 @@ namespace Assets.Scripts
         public static string TEXT_CURRVAL = "CurrValue";
         public static string TEXT_MAXVAL = "MaxValue";
 
+        //Scene
+        public static string GAME_OVER_SCENE = "GameOverScreen";
+
         //coroutine
         public static string MOVE_WALL = "MoveWall";
         public static string INVINCIBILITY_MODE = "InvincibilityMode";

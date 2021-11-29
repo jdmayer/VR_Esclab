@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Author: Axel Bauer
+/// </summary>
 public class StartGameTrigger : MonoBehaviour
 {
     public AudioSource startGame;
@@ -18,19 +21,19 @@ public class StartGameTrigger : MonoBehaviour
         //Intentionally left empty
     }
 
-    protected void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.name.Contains(StringConstants.HAND_COLLIDER))
+        var gameController = GameObject.Find("GameController");
+        var gc = gameController.GetComponent<GameController>() as GameController;
+
+        if (gc == null)
         {
-            GameController gc = GameObject.Find(StringConstants.GAME_CONTROLLER).GetComponent<GameController>();
-            if (gc == null)
-            {
-                Debug.LogError("StartGameTrigger.cs: Couldn't find GameController!");
-            } else
-            {
-                startGame.Play();
-                gc.GameStart();
-            }
+            Debug.LogError("StartGameTrigger.cs: Couldn't find GameController!");
+        }
+        else
+        {
+            startGame.Play();
+            gc.GameStart();
         }
     }
 }
