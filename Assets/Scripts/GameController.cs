@@ -24,8 +24,9 @@ public class GameController : MonoBehaviour
         //Intentionally left empty
         gameEnd = false;
         showGameEndText = true;
-        //GameWon();//TODO delete this
         Play();
+
+        //GameWon();//TODO delete this
     }
 
     void Update()
@@ -124,6 +125,8 @@ public class GameController : MonoBehaviour
         Debug.Log("Congrats on winning the game!");
         hideables = GetHideable();
         gameEnd = true;
+
+        soundeffects.Pause();
 
         GameObject[] enemies = GetEnemy();
 

@@ -753,7 +753,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 14072ff3d9be825499a3729a9168bb9c, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -1341,7 +1341,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2e756a1231832ca4684fad1edd5bb4b6, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -3083,6 +3083,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2158271272415754916, guid: c8ea20cdfa780284ab53d2257b4f4ab4,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158271272415754916, guid: c8ea20cdfa780284ab53d2257b4f4ab4,
+        type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 1.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7098923822053696183, guid: c8ea20cdfa780284ab53d2257b4f4ab4,
         type: 3}
       propertyPath: m_RootOrder
@@ -3207,6 +3217,16 @@ PrefabInstance:
         type: 3}
       propertyPath: autoRepath.visualizeSensitivity
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454666269733050586, guid: c8ea20cdfa780284ab53d2257b4f4ab4,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454666269733050586, guid: c8ea20cdfa780284ab53d2257b4f4ab4,
+        type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 1.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8ea20cdfa780284ab53d2257b4f4ab4, type: 3}

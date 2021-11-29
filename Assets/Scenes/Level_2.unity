@@ -592,6 +592,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2158271272415754916, guid: c8ea20cdfa780284ab53d2257b4f4ab4,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158271272415754916, guid: c8ea20cdfa780284ab53d2257b4f4ab4,
+        type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 1.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7098923822053696183, guid: c8ea20cdfa780284ab53d2257b4f4ab4,
         type: 3}
       propertyPath: m_RootOrder
@@ -666,6 +676,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454666269733050586, guid: c8ea20cdfa780284ab53d2257b4f4ab4,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454666269733050586, guid: c8ea20cdfa780284ab53d2257b4f4ab4,
+        type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 1.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8ea20cdfa780284ab53d2257b4f4ab4, type: 3}
