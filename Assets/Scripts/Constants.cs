@@ -15,7 +15,7 @@ public static class Constants
     public const int INVINCIBLE_ITEM_VALUE_MIN = 5;
     public const int INVINCIBLE_ITEM_VALUE_MAX = 15;
     public const int COIN_ITEM_VALUE_MIN = 1;
-    public const int COIN_ITEM_VALUE_MAX = 5;
+    public const int COIN_ITEM_VALUE_MAX = 1;
 
     public const float ENEMY_MASS = 5.0f;
     public const int DISTANCE_TO_ENEMY_UNTIL_MOVE = 4;
