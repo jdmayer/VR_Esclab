@@ -1,9 +1,11 @@
+using Assets.Scripts;
 using UnityEngine;
 using Valve.VR;
 
 /// <summary>
 /// Author: Janine Mayer
 /// Adjust visibility and positionof canvas with statusbars depending on controller input and position
+/// Need to find gameobject instance after scenechange as the previous game object will be destroyed!
 /// </summary>
 public class StatusbarPositioning : MonoBehaviour
 {
@@ -14,41 +16,63 @@ public class StatusbarPositioning : MonoBehaviour
 
     public GameObject leftController;
 
-    private Canvas canvasObject = null;
+    public GameObject canvasInstance;
 
     void Start()
     {
         Display.AddOnStateDownListener(DisplayStatsBar, HandType);
         Display.AddOnStateUpListener(HideStatsBar, HandType);
 
-        canvasObject = gameObject.GetComponentInParent<Canvas>();
-        canvasObject.enabled = false;
+        canvasInstance = gameObject;
+        canvasInstance.SetActive(false);
     }
 
     void Update()
     {
-        if (leftController)
+        if (leftController && canvasInstance)
         {
-            gameObject.transform.position = new Vector3(
-                leftController.transform.position.x + 0.5f,
-                leftController.transform.position.y + 0.5f,
+            canvasInstance.transform.position = new Vector3(
+                leftController.transform.position.x,
+                leftController.transform.position.y + 0.1f,
                 leftController.transform.position.z);
         }
 
         if (Camera)
         {
-            gameObject.transform.LookAt(Camera.transform);  
+            canvasInstance.transform.LookAt(Camera.transform);  
         }
     }
 
 
     private void DisplayStatsBar(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
-        canvasObject.enabled = true;
+        if (!canvasInstance)
+        {
+            foreach (GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[])
+            {
+                if (go.name.Contains(StringConstants.StatsBar_Level))
+                {
+                    canvasInstance = go;
+                }
+            }
+        }
+
+        canvasInstance.SetActive(true);      
     }
 
     private void HideStatsBar(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
-        canvasObject.enabled = false;
+        if (!canvasInstance)
+        {
+            foreach (GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[])
+            {
+                if (go.name.Contains(StringConstants.StatsBar_Level) && go.activeInHierarchy)
+                {
+                    canvasInstance = go;
+                }
+            }
+        }
+
+        canvasInstance.SetActive(false);
     }
 }

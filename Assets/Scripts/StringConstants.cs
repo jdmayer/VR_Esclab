@@ -14,6 +14,7 @@ namespace Assets.Scripts
         public static string BREAKABLE_WALL = "Breakable Wall";
         public static string GAME_CONTROLLER = "GameController";
         public static string VR_CAMERA = "VRCamera";
+        public static string StatsBar_Level = "StatsBar_Level";
 
         public static string TEXT_CURRVAL = "CurrValue";
         public static string TEXT_MAXVAL = "MaxValue";
