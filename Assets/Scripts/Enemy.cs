@@ -185,8 +185,6 @@ public class Enemy : MonoBehaviour
 
     bool decideIfFlying()
     {
-        //TODO? use random choice here -> if yes, then current Animation = -1; do this only every 20 seconds!
-
         if (isAsleep)
         {
             return false;
@@ -195,13 +193,6 @@ public class Enemy : MonoBehaviour
             currentAnimation = -1;
             return true;
         }
-    }
-
-    bool decideIfSleeping()
-    {
-        //TODO? use random choice here -> if yes, then current Animatoin = -1
-        currentAnimation = -1;
-        return true;
     }
 
     void Attack()

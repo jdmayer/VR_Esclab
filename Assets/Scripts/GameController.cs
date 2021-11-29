@@ -107,7 +107,6 @@ public class GameController : MonoBehaviour
 
     public void Play()
     {
-        //Play some audio!
         if (soundtrack != null)
         {
             soundtrack.Play();
@@ -117,7 +116,6 @@ public class GameController : MonoBehaviour
         {
             soundeffects.Play();
         }
-        //TODO check in which scene you are and then play soundtrack or other depending on that
     }
 
     public void GameStart()

@@ -23,11 +23,6 @@ public class HealthItem : ItemBaseClass
     public override void GotGrabbed()
     {
         base.GotGrabbed();//Call the class header
-        //TODO Maybe animation?
-
-
-        //call player script
-        //player.changecurrcoin(value);
     }
 
     public override int NourishedPlayer()
@@ -46,7 +41,6 @@ public class HealthItem : ItemBaseClass
 
     protected override void DestroyItem()
     {
-        //TODO maybe fancy shit?
         base.DestroyItem();//calls Destroy()
     }
 }

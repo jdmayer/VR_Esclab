@@ -78,8 +78,7 @@ public class ItemBaseClass : MonoBehaviour
     {
         this.taken = true;
 
-
-        NourishedPlayer();//Todo if possible change this to assert 
+        NourishedPlayer();
     }
 
     public virtual int NourishedPlayer()//Should be called when eaten -> Player class
