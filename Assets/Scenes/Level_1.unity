@@ -3829,6 +3829,41 @@ PrefabInstance:
       propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
       value: 1.1
       objectReference: {fileID: 0}
+    - target: {fileID: 3297996490763261701, guid: c8ea20cdfa780284ab53d2257b4f4ab4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5929509447177033669, guid: c8ea20cdfa780284ab53d2257b4f4ab4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6048034939055442595, guid: c8ea20cdfa780284ab53d2257b4f4ab4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098923822053595797, guid: c8ea20cdfa780284ab53d2257b4f4ab4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098923822053595797, guid: c8ea20cdfa780284ab53d2257b4f4ab4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098923822053595797, guid: c8ea20cdfa780284ab53d2257b4f4ab4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098923822053673871, guid: c8ea20cdfa780284ab53d2257b4f4ab4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7098923822053696183, guid: c8ea20cdfa780284ab53d2257b4f4ab4,
         type: 3}
       propertyPath: m_RootOrder

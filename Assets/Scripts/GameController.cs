@@ -72,7 +72,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public static GameController instance
+    /*public static GameController instance
     {
         get
         {
@@ -103,7 +103,7 @@ public class GameController : MonoBehaviour
             if (this != _instance)
                 Destroy(this.gameObject);
         }
-    }
+    }*/
 
     public void Play()
     {

@@ -110,6 +110,8 @@ public class Enemy : MonoBehaviour
                             timer += Time.deltaTime;
                             if (timer > waitTime)
                             {
+                                attackingSound.Play();
+                                growlingSound.Pause();
                                 Attack();
                                 timer = timer - waitTime;
                                 Debug.Log("Some time has passed");
@@ -118,13 +120,12 @@ public class Enemy : MonoBehaviour
                             isAttacking = true;
                             isFlying = false;
                             currentAnimation = -1;
-                            attackingSound.Play();
-                            growlingSound.Pause();
+
                     } else
                         {
                             currentAnimation = 0;
                             isAttacking = false;
-                        currentAnimation = -1;
+                            currentAnimation = -1;
                             attackingSound.Pause();
                             growlingSound.Play();
                     }
