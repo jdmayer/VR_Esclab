@@ -161,12 +161,12 @@ public class Character : MonoBehaviour
 
                 FieldOfView.SetBool(StringConstants.ANIMATION_ISHURT, true);
                 HeartSound.Play();
-                HeartSound.volume = 0.5f;
+                HeartSound.volume = 1 - ((float)newHealth / (float)painLevel);
             }
 
             if (oldHealth != newHealth)
             {
-                HeartSound.volume += oldHealth > newHealth ? 0.2f : -0.1f;
+                HeartSound.volume = 1 - ((float)newHealth / (float)painLevel);
             }
         }
         else if (FieldOfView && oldHealth <= painLevel && newHealth >= painLevel)

@@ -16,7 +16,7 @@ public class StatusbarPositioning : MonoBehaviour
 
     public GameObject leftController;
 
-    public GameObject canvasInstance;
+    private GameObject canvasInstance;
 
     void Start()
     {
