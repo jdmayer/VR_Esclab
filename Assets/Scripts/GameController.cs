@@ -1,11 +1,10 @@
 using Assets.Scripts;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-
+/// <summary>
+/// Author: Axel Bauer
+/// </summary>
 public class GameController : MonoBehaviour
 {
     private static GameController _instance;

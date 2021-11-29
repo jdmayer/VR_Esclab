@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Author: Axel Bauer
+/// </summary>
 public static class Constants
 {
     public const float ITEM_WEIGHT = 0.001f;

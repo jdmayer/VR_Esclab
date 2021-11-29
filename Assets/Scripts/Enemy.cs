@@ -1,6 +1,9 @@
 ﻿using Pathfinding;
 using UnityEngine;
 
+/// <summary>
+/// Author: Axel Bauer
+/// </summary>
 public class Enemy : MonoBehaviour
 {
 

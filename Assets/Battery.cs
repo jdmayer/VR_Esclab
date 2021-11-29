@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Author: Axel Bauer
+/// </summary>
 public class Battery : MonoBehaviour
 {
     public AudioSource soundeffect;
