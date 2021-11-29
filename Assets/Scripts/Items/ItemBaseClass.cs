@@ -53,16 +53,21 @@ public class ItemBaseClass : MonoBehaviour
 
         if (interactable != null && interactable.attachedToHand != null)
         {
-            GotGrabbed();
+            NourishedPlayer();
         }
     }
 
     //EventListener, if collision with ground -> getWeight -> amplitude sound
     protected void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Ground" || collision.gameObject.name == "Ground" || collision.gameObject.name == "ground" || collision.gameObject.name == "Ground_Plane")
+        if (collision.gameObject.name.Contains(StringConstants.GROUND) || collision.gameObject.tag == StringConstants.GROUND || collision.gameObject.name == "ground" || collision.gameObject.name == "Ground_Plane")
         {
             CollisionWithGround(collision.gameObject);
+        }
+
+        if (collision.gameObject.name.Contains(StringConstants.HAND_COLLIDER) || collision.gameObject.tag == StringConstants.GROUND || collision.gameObject.name == "LeftHand" || collision.gameObject.name == "RightHand")
+        {
+            GotGrabbed();
         }
     }
 
@@ -77,8 +82,6 @@ public class ItemBaseClass : MonoBehaviour
     public virtual void GotGrabbed() // should be called when grabbed -> Player class
     {
         this.taken = true;
-
-        NourishedPlayer();
     }
 
     public virtual int NourishedPlayer()//Should be called when eaten -> Player class

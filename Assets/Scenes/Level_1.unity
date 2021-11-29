@@ -2679,7 +2679,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.22352941, g: 0.16078432, b: 0.25490198, a: 1}
+  m_Color: {r: 0.23529412, g: 0.1882353, b: 0.3882353, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -3484,7 +3484,7 @@ PrefabInstance:
     - target: {fileID: 4840433484768104528, guid: f73880e278fe9d64e8860194d399caf5,
         type: 3}
       propertyPath: m_Name
-      value: Floor
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 4840433484768104528, guid: f73880e278fe9d64e8860194d399caf5,
         type: 3}

@@ -22,6 +22,9 @@ namespace Assets.Scripts
         //Scene
         public static string GAME_OVER_SCENE = "GameOverScreen";
 
+        public static string GROUND = "Ground";
+
+
         //coroutine
         public static string MOVE_WALL = "MoveWall";
         public static string INVINCIBILITY_MODE = "InvincibilityMode";

@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public static class Constants
 {
-    public const float ITEM_WEIGHT = 0.001f;
+    public const float ITEM_WEIGHT = 0.005f;
     public const float COIN_WEIGHT = 0.01f;
 
     public const float ITEM_ROTATION_SPEED = 1.0f;
