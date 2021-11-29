@@ -102,7 +102,7 @@ public class GameController : MonoBehaviour
         player.GetComponent<Character>().ResetCharacter();
     }
 
-    public void GameOver() //passed transform for rotation as well as position
+    public void GameOver()
     {
         SceneManager.LoadScene("GameOverScreen");
 
@@ -110,7 +110,7 @@ public class GameController : MonoBehaviour
         player.GetComponent<Character>().ResetCharacter();
     }
 
-    public void GameWon() //passed transform for rotation as well as position 
+    public void GameWon()
     {
         Debug.Log("Congrats on winning the game!");
         hideables = GetHideable();
@@ -126,9 +126,6 @@ public class GameController : MonoBehaviour
         Vector3 pos = new Vector3(-10, 0,0);
         Quaternion rot = Quaternion.Euler(0, 0 ,0);
         Instantiate(firework, pos, rot);
-
-        //TODO get all Obstacles objects
-        //TODO create a ground plane below you which will be static and lower everything else -> it will look like you will go higher! -> Text: Congrats on making the game!
     }
 
     public static GameObject GetPlayer()

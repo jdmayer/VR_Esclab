@@ -10,7 +10,7 @@ using Valve.VR.InteractionSystem;
  */
 public class ItemBaseClass : MonoBehaviour
 {
-    protected int value;
+    protected int value;//the value of the 
     protected float weight; //for sound amplitude when dropping
 
     protected bool taken;
@@ -60,31 +60,10 @@ public class ItemBaseClass : MonoBehaviour
     //EventListener, if collision with ground -> getWeight -> amplitude sound
     protected void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name.Contains(StringConstants.HAND_COLLIDER))
-        {
-            CollisionWithPlayer(collision.gameObject);
-        }
-
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.name == "Enemy" || collision.gameObject.name == "enemy")
-        {
-            CollisionWithEnemy(collision.gameObject);
-        }
-
         if (collision.gameObject.tag == "Ground" || collision.gameObject.name == "Ground" || collision.gameObject.name == "ground" || collision.gameObject.name == "Ground_Plane")
         {
             CollisionWithGround(collision.gameObject);
         }
-    }
-
-    protected virtual void CollisionWithPlayer(GameObject player)
-    {
-        Debug.Log("Debug: Collission with player");//TODO should be removed before production release
-    }
-
-    protected virtual void CollisionWithEnemy(GameObject enemy)
-    {
-        GotGrabbed();//TODO this is for testing purposes, delete it before publishing
-        Debug.Log("Got Grabbed");
     }
 
     protected virtual void CollisionWithGround(GameObject ground)
@@ -120,9 +99,3 @@ public class ItemBaseClass : MonoBehaviour
         value = Random.Range(min, max);
     }
 }
-
-// TODO COIN CLASS
-// when collect -> animation + sound
-
-// TODO HEALTH CLASS
-// when collect -> animation? + sound
