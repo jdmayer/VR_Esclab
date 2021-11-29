@@ -105,6 +105,30 @@ namespace Valve.VR
             }
         }
         
+        public virtual SteamVR_Action_Boolean GrabWall
+        {
+            get
+            {
+                return SteamVR_Actions.default_GrabWall;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean RotateWall
+        {
+            get
+            {
+                return SteamVR_Actions.default_RotateWall;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean DisplayStats
+        {
+            get
+            {
+                return SteamVR_Actions.default_DisplayStats;
+            }
+        }
+        
         public virtual SteamVR_Action_Vibration Haptic
         {
             get

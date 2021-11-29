@@ -429,27 +429,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 229342429}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &229342434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!1 &229342434 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 101548, guid: 73c231468283e8543934c01b689bff8e,
+    type: 3}
+  m_PrefabInstance: {fileID: 229342429}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 229342430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb6c5823fc1dec6439e64ab6851e7e1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minDistance: 1.2
-  Selection:
-    actionPath: /actions/esclab/in/SelectWall
-    needsReinit: 0
-  Rotation:
-    actionPath: /actions/esclab/in/RotateWall
-    needsReinit: 0
-  handType: 2
-  rightController: {fileID: 229342431}
 --- !u!114 &229342435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,6 +452,27 @@ MonoBehaviour:
   CoinBar: {fileID: 685840672}
   HeartSound: {fileID: 1737763945}
   Camera: {fileID: 229342432}
+--- !u!114 &229342436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229342434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6c5823fc1dec6439e64ab6851e7e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDistance: 1.2
+  Selection:
+    actionPath: /actions/default/in/GrabWall
+    needsReinit: 0
+  Rotation:
+    actionPath: /actions/default/in/RotateWall
+    needsReinit: 0
+  handType: 2
+  rightController: {fileID: 229342431}
 --- !u!1001 &253861971
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1853,11 +1859,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 738497454}
     m_Modifications:
-    - target: {fileID: 1792800642925722623, guid: 2be70852e15c5544ea29dff2698e50de,
-        type: 3}
-      propertyPath: m_TagString
-      value: HideableObject
-      objectReference: {fileID: 0}
     - target: {fileID: 4234722671367431771, guid: b756ee98a846cc3498293acd43ba28f4,
         type: 3}
       propertyPath: Camera
@@ -1868,6 +1869,11 @@ PrefabInstance:
       propertyPath: leftController
       value: 
       objectReference: {fileID: 229342433}
+    - target: {fileID: 4234722671367431771, guid: b756ee98a846cc3498293acd43ba28f4,
+        type: 3}
+      propertyPath: Display.actionPath
+      value: /actions/default/in/DisplayStats
+      objectReference: {fileID: 0}
     - target: {fileID: 5365046797477048347, guid: b756ee98a846cc3498293acd43ba28f4,
         type: 3}
       propertyPath: m_Name
@@ -1977,6 +1983,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1792800642925722623, guid: 2be70852e15c5544ea29dff2698e50de,
+        type: 3}
+      propertyPath: m_TagString
+      value: HideableObject
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b756ee98a846cc3498293acd43ba28f4, type: 3}

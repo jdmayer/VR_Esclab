@@ -355,10 +355,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDistance: 1.2
   Selection:
-    actionPath: /actions/esclab/in/SelectWall
+    actionPath: /actions/default/in/GrabWall
     needsReinit: 0
   Rotation:
-    actionPath: /actions/esclab/in/RotateWall
+    actionPath: /actions/default/in/RotateWall
     needsReinit: 0
   handType: 2
   rightController: {fileID: 1207746446}
@@ -379,6 +379,11 @@ PrefabInstance:
       propertyPath: leftController
       value: 
       objectReference: {fileID: 1266102780}
+    - target: {fileID: 4234722671367431771, guid: b756ee98a846cc3498293acd43ba28f4,
+        type: 3}
+      propertyPath: Display.actionPath
+      value: /actions/default/in/DisplayStats
+      objectReference: {fileID: 0}
     - target: {fileID: 5365046797477048347, guid: b756ee98a846cc3498293acd43ba28f4,
         type: 3}
       propertyPath: m_Name
@@ -2217,7 +2222,7 @@ PrefabInstance:
     - target: {fileID: 114000010474703086, guid: 73c231468283e8543934c01b689bff8e,
         type: 3}
       propertyPath: actionSet.actionSetPath
-      value: /actions/esclab
+      value: /actions/default
       objectReference: {fileID: 0}
     - target: {fileID: 114000012749712888, guid: 73c231468283e8543934c01b689bff8e,
         type: 3}

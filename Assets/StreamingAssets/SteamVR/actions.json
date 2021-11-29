@@ -50,6 +50,18 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/default/in/GrabWall",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/RotateWall",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/DisplayStats",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
