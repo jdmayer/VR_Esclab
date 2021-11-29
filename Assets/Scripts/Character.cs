@@ -174,7 +174,15 @@ public class Character : MonoBehaviour
             Debug.Log("Character is healed! " + currHealth + " / " + maxHealth);
 
             FieldOfView.SetBool(StringConstants.ANIMATION_ISHURT, false);
-            HeartSound.Stop();
+
+            if (newHealth > painLevel)
+            {
+                HeartSound.Stop();
+            }
+            else
+            {
+                HeartSound.volume = 1 - ((float)newHealth / (float)painLevel);
+            }
         }
     }
 
