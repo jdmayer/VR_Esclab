@@ -146,7 +146,7 @@ public class Character : MonoBehaviour
     {
         SetCurrCoins(0);
         SetCurrHealth(this.maxHealth);
-        this.isInvincible = true;
+        this.isInvincible = false;
 
         SetCharacterStats();
     }
@@ -213,12 +213,6 @@ public class Character : MonoBehaviour
         SetPainLevel(PlayerPrefs.GetInt(CharacterStats.PainLevel));
         SetMaxCoins(PlayerPrefs.GetInt(CharacterStats.MaxCoins));
         SetCurrCoins(PlayerPrefs.GetInt(CharacterStats.CurrCoins));
-    }
-
-    public void GetsAttacked(int strength)
-    {
-        //change coins?
-        //change health
     }
 
     public bool IsInvincible()
