@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
     private static GameController _instance;
 
     public AudioSource soundtrack;
-    public AudioSource startingAndGameOverSound;
+    public AudioSource soundeffects;
     public GameObject firework;
     public GameObject endText;
 
@@ -91,6 +91,7 @@ public class GameController : MonoBehaviour
     {
         //Play some audio!
         soundtrack.Play();
+        soundeffects.Play();
         //TODO check in which scene you are and then play soundtrack or other depending on that
     }
 
@@ -126,6 +127,9 @@ public class GameController : MonoBehaviour
         Vector3 pos = new Vector3(-10, 0,0);
         Quaternion rot = Quaternion.Euler(0, 0 ,0);
         Instantiate(firework, pos, rot);
+
+        soundeffects.Pause();
+        soundtrack.Pause();
     }
 
     public static GameObject GetPlayer()

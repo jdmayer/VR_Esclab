@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class StartGameTrigger : MonoBehaviour
 {
+    public AudioSource startGame;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,7 @@ public class StartGameTrigger : MonoBehaviour
                 Debug.LogError("StartGameTrigger.cs: Couldn't find GameController!");
             } else
             {
+                startGame.Play();
                 gc.GameStart();
             }
         }

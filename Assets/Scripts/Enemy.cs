@@ -7,6 +7,9 @@ using static Character;
 public class Enemy : MonoBehaviour
 {
 
+    public AudioSource growlingSound;
+    public AudioSource attackingSound;
+
     int currentAnimation; //idle, running, attacking etc.
     bool isFlying;
     bool isAsleep;
@@ -115,15 +118,22 @@ public class Enemy : MonoBehaviour
                             isAttacking = true;
                             isFlying = false;
                             currentAnimation = -1;
-                        } else
+                            attackingSound.Play();
+                            growlingSound.Pause();
+                    } else
                         {
                             currentAnimation = 0;
                             isAttacking = false;
-                        }
+                        currentAnimation = -1;
+                            attackingSound.Pause();
+                            growlingSound.Play();
+                    }
                 } else //------------------------------------------------------------------------------ IF ENEMY MOVES
                     {
                         currentAnimation = 1;
-                    }
+                        attackingSound.Pause();
+                        growlingSound.Pause();
+                }
                 break;
 
                 //--------------------------------------------------------------------------------------------- IF moveablePlayer GOES OUT OF RANGE
@@ -142,16 +152,23 @@ public class Enemy : MonoBehaviour
                     {
                         currentAnimation = -1;
                         isFlying = false;
+                        attackingSound.Pause();
+                        growlingSound.Pause();
 
                     } else if (isFlying)
                     {
                         currentAnimation = -1;
                         isAttacking = false;
                         isAsleep = false;
+                        attackingSound.Pause();
+                        growlingSound.Pause();
+
                     }
                     else
                     {
                         currentAnimation = 0;
+                        growlingSound.Play();
+                        attackingSound.Pause();
                     }
                 }
 
