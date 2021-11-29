@@ -7,6 +7,9 @@ using static Character;
 public class Enemy : MonoBehaviour
 {
 
+    public AudioSource growlingSound;
+    public AudioSource attackingSound;
+
     int currentAnimation; //idle, running, attacking etc.
     bool isFlying;
     bool isAsleep;
@@ -83,9 +86,9 @@ public class Enemy : MonoBehaviour
         animator.SetBool("isSleeping", isAsleep);
         animator.SetBool("isAttacking",isAttacking);
 
-
+        float distanceToMoveablePlayer = GetDistanceTomoveablePlayer();
         //Debug.Log("Checking if distance is large enough...");
-        switch (GetDistanceTomoveablePlayer())
+        switch (distanceToMoveablePlayer)
             {
                 //--------------------------------------------------------------------------------------------- IF moveablePlayer IS/COMES IN RANGE
                 case < Constants.DISTANCE_TO_ENEMY_UNTIL_MOVE:
@@ -99,10 +102,10 @@ public class Enemy : MonoBehaviour
                     isAsleep = false;
                     isFlying = false;
 
-                    if (pathSetter.velocity.magnitude <= 0.5)//-------------------------------------------- IF ENEMY DOESNT MOVE
+                    if (pathSetter.velocity.magnitude <= 0.1)//-------------------------------------------- IF ENEMY DOESNT MOVE
                     {
 
-                    if (GetDistanceTomoveablePlayer() <= Constants.ATTACKING_DISTANCE)//--------------------------------------------------------- CHECK IF Close to moveablePlayer
+                    if (distanceToMoveablePlayer <= Constants.ATTACKING_DISTANCE)//--------------------------------------------------------- CHECK IF Close to moveablePlayer
                         {
                             timer += Time.deltaTime;
                             if (timer > waitTime)
@@ -115,15 +118,22 @@ public class Enemy : MonoBehaviour
                             isAttacking = true;
                             isFlying = false;
                             currentAnimation = -1;
-                        } else
+                            attackingSound.Play();
+                            growlingSound.Pause();
+                    } else
                         {
                             currentAnimation = 0;
                             isAttacking = false;
-                        }
+                        currentAnimation = -1;
+                            attackingSound.Pause();
+                            growlingSound.Play();
+                    }
                 } else //------------------------------------------------------------------------------ IF ENEMY MOVES
                     {
                         currentAnimation = 1;
-                    }
+                        attackingSound.Pause();
+                        growlingSound.Pause();
+                }
                 break;
 
                 //--------------------------------------------------------------------------------------------- IF moveablePlayer GOES OUT OF RANGE
@@ -141,15 +151,24 @@ public class Enemy : MonoBehaviour
                     if (isAsleep)
                     {
                         currentAnimation = -1;
+                        isFlying = false;
+                        attackingSound.Pause();
+                        growlingSound.Pause();
 
                     } else if (isFlying)
                     {
                         currentAnimation = -1;
                         isAttacking = false;
+                        isAsleep = false;
+                        attackingSound.Pause();
+                        growlingSound.Pause();
+
                     }
                     else
                     {
                         currentAnimation = 0;
+                        growlingSound.Play();
+                        attackingSound.Pause();
                     }
                 }
 
@@ -166,10 +185,16 @@ public class Enemy : MonoBehaviour
 
     bool decideIfFlying()
     {
-
         //TODO? use random choice here -> if yes, then current Animation = -1; do this only every 20 seconds!
-        currentAnimation = -1;
-        return true;
+
+        if (isAsleep)
+        {
+            return false;
+        } else
+        {
+            currentAnimation = -1;
+            return true;
+        }
     }
 
     bool decideIfSleeping()
@@ -191,13 +216,16 @@ public class Enemy : MonoBehaviour
     float GetDistanceTomoveablePlayer()
     {
         Vector3 moveablePlayerPosition = moveablePlayer.transform.position;
+        moveablePlayerPosition.y = 0;
         Vector3 enemyPosition = this.gameObject.transform.position;
+        enemyPosition.y = 0;
         return (moveablePlayerPosition-enemyPosition).magnitude;
     }
 
     GameObject FindMoveablePlayer()
     {
-       return GameController.GetMoveablePlayer();
+       GameObject player = GameController.GetMoveablePlayer();
+        return player;
     }
 
     GameObject FindPlayer()

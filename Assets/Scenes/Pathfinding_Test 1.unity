@@ -420,6 +420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 735603229}
+  - component: {fileID: 735603230}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -442,6 +443,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &735603230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735603228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f922f8deebef4ef46a41ea28b5688eb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundtrack: {fileID: 0}
+  startingAndGameOverSound: {fileID: 0}
 --- !u!82 &813480074 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 3751100463166825637, guid: b1c341199fdf07947ad8d25bacf05b5b,
@@ -1049,7 +1064,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 107946, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: SteamVR_Player
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_RootOrder
@@ -1307,6 +1322,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7098923822568236989, guid: c8ea20cdfa780284ab53d2257b4f4ab4,
+        type: 3}
+      propertyPath: radius
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8ea20cdfa780284ab53d2257b4f4ab4, type: 3}
 --- !u!1001 &8597399010416921481
@@ -1389,6 +1409,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: A*
+      objectReference: {fileID: 0}
+    - target: {fileID: 8928308032736487419, guid: a3e4e35ed54c36f48bf949a42c8793a9,
+        type: 3}
+      propertyPath: data.dataString
+      value: UEsDBBQAAAgIAAAIIexdjCO3TwIAAA0FAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGFVE1z2jAQ/SuMzm3HMAGmvTWGkB6SMKGdXHwR0hprkCWPPsJHhv/elSxjlxx6wrz3dvfth/1BhLINMKfNygj+pDmQHyMSnsmXUU8+wpHutNqIM3SaN8FdFUQ0al6pExrxcQizugZnBPupdjKIMwS9EqU29ZLvINfWWYRLKi0gZbQL0QqhjxE5poBT+j2H39EFnxgoB+Z/Kq+YpHUDPLjtxdNOPW1lCvtIiuCZaSmFTSaIOzWxyZw21mMLKOCCYlOx/AT/ViB2lUt/rsEvZWnBJUuGnhbC4GzarORetwOrqd23vt6p9KHOZDqLntqkT5/42V2kS6Prx67uOAs1XCXY/pWeGLVuMNEhvOiNj+N4DlTu6VbCWwXqWa+M9ooj6YwPod7CZDFIde0tr4Dte13r9Qb0zeftjPvtXGL3x1yKehuQb3ctsJE6zvt7iAGDm/mFhuNN2JQJ0WDij4XfdDc8nkQ8CGMdUqmgCu622psgJcs4s9CMd7k2CiKcPDegqHSnNaZxtyu84QZlb5gHGl6TVDxx3fXfhES412fZDbXWh+uybKUPT2CrF++kUNCbDsQzzinXSrUXNpxJF7bxpqRsELbzgv97WoTP6d0cZpPZfDKeMqBfy2yeMbadzEtWjrMZI/H2hMI+qVy3RtN4cGuqT67wzrqvx2hlaBOvnRt6WIlzrQcjF6rUG2YA1Eub4WocDBbBt5IvucABbcA5oeK+yUdBpGZ74MU1URE7XR6doUWfpSCNeNcuIAXJ4zejIAG+nvLawLuAQyjeJbuQy19QSwMEFAAACAgAAAgh7HkxCu5tAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tFKKeaKJeaqZkZm5kaFpcmqibpqBuUFycpKReVpymqGBWbJSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAAgh7F2MI7dPAgAADQUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAAgh7HkxCu5tAAAAeAAAAAkAJAAAAAAAAAAAAAAAnAIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABUAwAAAAA=
       objectReference: {fileID: 0}
     - target: {fileID: 8928308032736487420, guid: a3e4e35ed54c36f48bf949a42c8793a9,
         type: 3}

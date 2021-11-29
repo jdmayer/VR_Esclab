@@ -11,9 +11,50 @@ public class GameController : MonoBehaviour
     private static GameController _instance;
 
     public AudioSource soundtrack;
-    public AudioSource startingAndGameOverSound;
+    public AudioSource soundeffects;
+    public GameObject firework;
+    public GameObject endText;
 
+    private GameObject[] hideables;
+    private bool gameEnd;
+    private bool showGameEndText;
 
+    void Start()
+    {
+        //Intentionally left empty
+        gameEnd = false;
+        showGameEndText = true;
+        Play();
+
+        //GameWon();//TODO delete this
+    }
+
+    void Update()
+    {
+        if (gameEnd)
+        {
+            hideables = GetHideable();
+            if (hideables == null)
+            {
+                Debug.LogError("GameController.cs: Not able to fetch hideables");
+            } else
+            {
+                if (hideables != null && hideables[0].transform.position.y < 0 && showGameEndText)
+                {
+                    ShowGameEndText();
+                }
+
+                if (hideables != null && hideables[0].transform.position.y > -5)
+                {
+                    foreach (GameObject go in hideables)
+                    {
+                        go.transform.SetPositionAndRotation(new Vector3(go.transform.position.x, go.transform.position.y - 0.1f * Time.deltaTime, go.transform.position.z), go.transform.rotation);
+
+                    }
+                } 
+            }
+        }
+    }
 
     public static GameController instance
     {
@@ -51,28 +92,55 @@ public class GameController : MonoBehaviour
     public void Play()
     {
         //Play some audio!
-        soundtrack.Play();
+        if (soundtrack != null)
+        {
+            soundtrack.Play();
+        }
+
+        if (soundeffects != null) 
+        {
+            soundeffects.Play();
+        }
         //TODO check in which scene you are and then play soundtrack or other depending on that
     }
 
-
-    public void GameOver(Transform playerPosition) //passed transform for rotation as well as position
+    public void GameStart()
     {
-        ///*Vector3*/ playerPosition = GetMoveablePlayer().transform.position;
+        SceneManager.LoadScene("GameOverScreen");
 
-        //TODO load new scene
-
-        //TODO get player and add the position to him/her
-
-        //TODO Player.Reset();
-
+        GameObject player = GetPlayer();
+        player.GetComponent<Character>().ResetCharacter();
     }
 
-    public void GameWon(Transform playerPosition) //passed transform for rotation as well as position 
+    public void GameOver()
     {
-        //TODO check if last scene
-        //TODO get all Obstacles objects
-        //TODO create a ground plane below you which will be static and lower everything else -> it will look like you will go higher! -> Text: Congrats on making the game!
+        SceneManager.LoadScene("GameOverScreen");
+
+        GameObject player = GetPlayer();
+        player.GetComponent<Character>().ResetCharacter();
+    }
+
+    public void GameWon()
+    {
+        Debug.Log("Congrats on winning the game!");
+        hideables = GetHideable();
+        gameEnd = true;
+
+        soundeffects.Pause();
+
+        GameObject[] enemies = GetEnemy();
+
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+
+        Vector3 pos = new Vector3(-10, 0,0);
+        Quaternion rot = Quaternion.Euler(0, 0 ,0);
+        Instantiate(firework, pos, rot);
+
+        soundeffects.Pause();
+        soundtrack.Pause();
     }
 
     public static GameObject GetPlayer()
@@ -102,7 +170,7 @@ public class GameController : MonoBehaviour
 
         if (moveablePlayer == null)
         {
-            moveablePlayer = GameObject.Find(StringConstants.VR_CAMERA);
+            moveablePlayer = GameObject.Find("FollowHead");
         }
 
         if (moveablePlayer == null)
@@ -113,35 +181,42 @@ public class GameController : MonoBehaviour
         return moveablePlayer;
     }
 
-    public GameObject GetEnemy()
+    public GameObject[] GetHideable()
     {
-        GameObject enemy = GameObject.Find("Enemy");
+        return GameObject.FindGameObjectsWithTag("HideableObject");
+    }
+
+    public GameObject[] GetEnemy()
+    {
+        GameObject[] enemy = GameObject.FindGameObjectsWithTag("Enemy");
 
         if (enemy == null)
         {
-            enemy = GameObject.Find("enemy");
+            enemy[0] = GameObject.Find("Enemy");
         }
 
         if (enemy == null)
         {
-            enemy = GameObject.Find("Red");
+            enemy[0] = GameObject.Find("Red");
         }
 
 
         if (enemy == null)
         {
-            enemy = GameObject.Find("AI");
+            enemy[0] = GameObject.Find("AI");
         }
 
-        if (enemy == null)
-        {
-            enemy = GameObject.FindGameObjectWithTag("Enemy");
-        }
         if (enemy == null)
         {
             Debug.LogError("Enemy.cs: Couldn't find player!");
         }
 
         return enemy;
+    }
+
+    private void ShowGameEndText()
+    {
+        Instantiate(endText, new Vector3(0, 2, 1.4f), new Quaternion(0,0,0,0));
+        showGameEndText = false;
     }
 }

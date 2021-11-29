@@ -25,9 +25,20 @@ public class CoinItem : ItemBaseClass
     {
         base.GotGrabbed();//Call the class header
         //TODO Maybe animation?
+    }
 
-        //call player script
-        //player.changecurrcoin(value);
+    public override int NourishedPlayer()
+    {
+        
+        Character character = GameController.GetPlayer().GetComponent<Character>();
+        if (character == null)
+        {
+            Debug.LogError("CoinItem.cs: No character found!");
+        } else
+        {
+            character.ChangeCurrCoins(value);
+        }
+        return base.NourishedPlayer();
     }
 
     protected override void DestroyItem()

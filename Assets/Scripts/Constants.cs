@@ -19,5 +19,7 @@ public static class Constants
 
     public const float ENEMY_MASS = 5.0f;
     public const int DISTANCE_TO_ENEMY_UNTIL_MOVE = 4;
-    public const int ATTACKING_DISTANCE = 2;
+    public const float ATTACKING_DISTANCE = 0.5f;
+
+    public const float OPACITY_SPEED_FIRE = -3.0f;
 }
