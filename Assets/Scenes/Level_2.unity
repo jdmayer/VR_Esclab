@@ -1545,6 +1545,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1766271862}
     m_Modifications:
+    - target: {fileID: 1792800642925722623, guid: 2be70852e15c5544ea29dff2698e50de,
+        type: 3}
+      propertyPath: m_TagString
+      value: HideableObject
+      objectReference: {fileID: 0}
     - target: {fileID: 2844127505141165091, guid: 79935edef258d8b468599321ddea33ba,
         type: 3}
       propertyPath: m_RootOrder
@@ -1604,11 +1609,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CoinItem
-      objectReference: {fileID: 0}
-    - target: {fileID: 1792800642925722623, guid: 2be70852e15c5544ea29dff2698e50de,
-        type: 3}
-      propertyPath: m_TagString
-      value: HideableObject
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79935edef258d8b468599321ddea33ba, type: 3}
@@ -1825,7 +1825,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.23529412, g: 0.1882353, b: 0.3882353, a: 1}
-  m_Intensity: 1
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

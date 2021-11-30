@@ -98,9 +98,9 @@ public class Character : MonoBehaviour
         {
             Debug.Log("Won the game!");
             StopAllCoroutines();
-
             var gameController = GetGameController();
             gameController?.GameWon();
+            ResetCharacter();
         }
     }
 
@@ -148,7 +148,7 @@ public class Character : MonoBehaviour
         SetCurrHealth(this.maxHealth);
         this.isInvincible = false;
 
-        SetCharacterStats();
+        SetCharacterStats(true);
     }
 
     private void CheckHealthCondition(int oldHealth, int newHealth)
@@ -186,9 +186,9 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void SetCharacterStats()
+    public void SetCharacterStats(bool isResetting = false)
     {
-        if (maxHealth == 0)
+        if (!isResetting && maxHealth == 0)
         {
             return;
         }
