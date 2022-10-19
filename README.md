@@ -7,7 +7,7 @@ The player needs to navigate through an unknown labyrinth and collect coins. An 
     <image src="https://github.com/jdmayer/VR_Esclab/blob/main/PlayThrough%20Gifs/01%20-%20Start.gif"/>
 </div>
 
-A whole play through of this small VR game can be watched <a href="https://www.youtube.com/watch?v=0Ccb9pqAfyk">here on youtube</a>. <br/>
+A whole play through of this small VR game can be watched <a href="https://www.youtube.com/watch?v=SSBLjp_vM28">here on youtube</a>. <br/>
 The documentation about the wall interaction, stats, and portal is available <a href="https://github.com/jdmayer/VR_Esclab/blob/main/Documentation/Esclab_Mayer.pdf">here on github</a>.
 
 🤝 **This project was planned, designed, and implemented with <a href="https://github.com/Xovval">@Xovval</a>.**
